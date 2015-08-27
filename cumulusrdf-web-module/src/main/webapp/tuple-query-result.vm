@@ -1,0 +1,31 @@
+<div class="well">
+	<pre>$request.query</pre>
+</div>
+
+#if($request.tupleResult)
+	#set($names = $request.tupleResult.bindingNames)
+<h2 class="sub-header">Tuple Result</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+		  #foreach($name in $names)
+			<th>$name</th>
+		  #end
+        </tr>
+      </thead>
+      <tbody>	
+		#foreach($bindingSet in $request.wrappedResult)
+		  <tr>
+		  #foreach($name in $names)
+			<td><small>$bindingSet.getValue($name)</small></td>
+		  #end
+		  </tr>
+		#end	
+      </tbody>
+    </table>
+  </div>
+#else
+<div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> No result for this query.</strong></div>	
+#end	
+<a href="query" class="btn btn-success active" role="button">Back</a>

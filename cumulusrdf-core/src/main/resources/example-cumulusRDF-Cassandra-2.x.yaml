@@ -1,0 +1,141 @@
+--- 
+##########################################
+##	CumulusRDF configuration	##
+##########################################
+
+##### Dictionary ######
+
+# Known URIs cache size: the size of the (LRU) cache CumulusRDF will use for well known URIs, that is, URIs belonging to known vocabularies.
+known-uris-id-cache-size: 2000
+known-uris-value-cache-size: 2000
+
+# Namespaces cache size: the size of the (LRU) cache CumulusRDF will use for namespaces. 
+# Note that well-known namespaces are not involved in this cache. 
+namespaces-id-cache-size: 50000
+namespaces-value-cache-size: 25000
+
+# Local names cache size: the size of the (LRU) cache CumulusRDF will use for local names. 
+# Note that well-known URIs are not involved in this cache. 
+#localnames-id-cache-size: 10000
+#localnames-value-cache-size: 10000
+
+# Literals and blank nodes cache size: the size of the (LRU) cache CumulusRDF will use for literals and blank nodes.
+# Note that well-known URIs are not involved in this cache. 
+literals-bnodes-id-cache-size: 30000
+literals-bnodes-value-cache-size: 25000
+
+# Short and long literals are handled differently because their size. 
+# Shortly, CumulusRDF will assign variable length identifiers to "short" literals and blank nodes, while for long literals a short and fixed-length identifiers
+# will be generated. This configuration parameter determines when a literal has to be considered "short" or "long".  
+long-literals-threshold: 1000
+
+##### Index ######
+
+# Storage layout: allowed values are triple or quad
+storage-layout: "triple"
+
+# Build additional index for range queries over time and
+# numerical values, e.g., queries like: SELECT * WHERE { ?s ?p ?o FILTER(?o >= "10"^^xsd:double ) }.
+# Values: true, false.
+# Default value: false.
+storage-index-ranges: false
+
+##### Servlets ######
+
+# The base URI of resources within the data store.
+# Example: http://localhost:8080/cumulusrdf
+# Default: empty (i.e., internal base URI = external base URI).
+# internal-base-URI:
+
+# The base URI of resources as they are to be seen on the Web (exposed via, e.g., the Linked Data servlet).
+# Example: http://example.org
+# Default: empty (i.e., internal base URI = external base URI).
+# external-base-URI:
+
+#############################################################################################
+## This section contains a default configuration for all supported kind of storages.       ##
+## So at runtime, following the procedure described in Wiki, CumulusRDF will use just one  ##
+## of the following (depending on the runtime storage module you plug-in).                 ##
+#############################################################################################
+
+##########################################################
+##		Cassandra 2.x configuration		##
+##							##
+##	Please see					##
+##	*	http://www.datastax.com/docs		##
+##	*	http://cassandra.apache.org		##
+##########################################################
+
+# Cassandra nodes that CumulusRDF should connect to
+# comma-seperated list of "<host>" entries.
+cassandra-hosts: "localhost"
+
+# Keyspace in Cassandra cluster.
+# By using several keyspaces, multiple CumulusRDF instances
+# can store data in the same Cassandra cluster.
+# Default value: "KeyspaceCumulus".
+cassandra-keyspace: "KeyspaceCumulus"
+
+# Datastax driver socket options
+# Default values, in case of absence, are taken from Datastax driver
+# Commented properties are optional so they doesn't have a default value. The indicated value is there just to 
+# inform about the expected datatype.
+# If omitted simply they won't be set
+
+cassandra-connect-timeout-millis: 5000
+cassandra-read-timeout-millis: 12000
+#cassandra-keep-alive: true
+#cassandra-reuse-address: true
+#cassandra-receive-buffer-size: 1000
+#cassandra-so-linger: 1000
+#cassandra-tcp-no-delay: false
+
+# Datastax driver query options
+# Default values, in case of absence, are taken from Datastax driver
+# Commented properties are optional so they doesn't have a default value. The indicated value is there just to 
+# inform about the expected datatype.
+# If omitted simply they won't be set
+
+#cassandra-consistency-level: "ONE"
+#cassandra-serial-consistency-level: "SERIAL"
+#cassandra-fetch-size: 100
+
+# Datastax driver retry policy
+#cassandra-retry-policy: "<class name>"
+
+# Datastax driver load balancing policy
+#cassandra-load-balancing-policy: "<class name>"
+
+# Datastax driver reconnection policy
+#cassandra-reconnection-policy: "<class name>"
+
+# Datastax driver compression to use for the transport
+#cassandra-transport-compression: "NONE"
+
+# Datastac pooling connection options
+#cassandra-local-core-connections-per-host: 10
+#cassandra-local-max-connections-per-host: 10
+#cassandra-local-max-simultaneous-request-per-connection-threshold: 10
+#cassandra-local-min-simultaneous-request-per-connection-threshold: 10
+#cassandra-remote-core-connections-per-host: 10
+#cassandra-remote-max-connections-per-host: 10
+#cassandra-remote-max-simultaneous-request-per-connection-threshold: 10
+#cassandra-remote-min-simultaneous-request-per-connection-threshold: 10
+
+
+# Number of replicas across the cassandra cluster.
+# Default value: 1.
+cassandra-replication-factor: 1
+
+
+# Cassandra read consistency.
+# Default value: ONE.
+cassandra-read-consistency: "ONE"
+
+# Cassandra write consistency.
+# Default value: ONE.
+cassandra-write-consistency: "ONE"
+
+# Time to live value. If set to -1 it is deactivated.
+# Default value: -1.
+# cassandra-store-ttl: -1

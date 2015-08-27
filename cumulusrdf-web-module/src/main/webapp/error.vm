@@ -1,0 +1,33 @@
+<div class="well">
+	This is the CumulusRDF web module error page.<br/>
+	If you see this page probably something went wrong with your request. Further details below.
+</div>
+#set($message = $request.getAttribute("javax.servlet.error.message"))
+#set($uri = $request.getAttribute("javax.servlet.error.request_uri"))
+#set($cause = $request.getAttribute("javax.servlet.error.exception"))
+#set($code = $request.getAttribute("javax.servlet.error.status_code"))
+
+#if($message || $uri || $cause || $code)
+<div class="alert alert-warning">
+	<div>
+		#if($code)
+    	HTTP Status Code : <strong>$request.getAttribute("javax.servlet.error.status_code")</strong>
+		#end
+		#if($message)
+    	<br/><br/>$esc.html($message)</div>	
+    	#end
+        #if($uri) 
+    	<br/>REQUEST URI: <em>$uri</em></div>	
+    	#end
+        #if($cause) 
+    		<br/>AVAILABLE STACKTRACE:<br/><br/>
+    		#foreach($item in $cause.stackTrace)
+    			<small><em>$item</em></small></br/>
+    		#end	
+    	#end
+	</div>
+</div>	
+#else
+    <div class="alert alert-warning">Sorry, no details available. If you are the system administrator, please see the system logs.</div>
+#end	
+

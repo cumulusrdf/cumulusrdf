@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>cumulusrdf</artifactId>
+		<groupId>edu.kit.aifb</groupId>
+		<version>1.1.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>cumulusrdf-integration-tests</artifactId>
+	<name>CumulusRDF: Integration tests module</name>
+	<url>http://code.google.com/p/cumulusrdf/</url>
+	<description>Module containing only integration-tests that require a running Servlet Engine and Cassandra.  </description>
+
+	<organization>
+		<name>AIFB, KIT</name>
+		<url>http://www.aifb.kit.edu/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Andreas Harth</name>
+			<email>harth@kit.edu</email>
+			<url>http://harth.org/andreas/</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Günter Ladwig </name>
+			<email>guenter.ladwig@kit.edu </email>
+			<url>http://www.aifb.kit.edu/web/Günter_Ladwig</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Steffen Stadtmüller</name>
+			<email>steffen.stadtmueller@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Steffen_Stadtmüller</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andreas Wagner</name>
+			<email>a.wagner@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Andreas_Wagner</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Felix Obenauer</name>
+			<email>f.obenauer@googlemail.com</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Sebastian Schmidt</name>
+			<email>cumulusrdf@isibboi.de</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andrea Gazzarini</name>
+			<email>a.gazzarini@gmail.com</email>
+			<url>http://it.linkedin.com/in/andreagazzarini</url>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<dependency>
+			<groupId>edu.kit.aifb</groupId>
+			<artifactId>cumulusrdf-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>

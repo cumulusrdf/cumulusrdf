@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>cumulusrdf</artifactId>
+		<groupId>edu.kit.aifb</groupId>
+		<version>1.1.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>cumulusrdf-standalone</artifactId>
+	<name>CumulusRDF: Standalone c/s module</name>
+	<organization>
+		<name>AIFB, KIT</name>
+		<url>http://www.aifb.kit.edu/</url>
+	</organization>
+	<url>http://code.google.com/p/cumulusrdf/</url>
+	<developers>
+		<developer>
+			<name>Andreas Harth</name>
+			<email>harth@kit.edu</email>
+			<url>http://harth.org/andreas/</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Günter Ladwig </name>
+			<email>guenter.ladwig@kit.edu </email>
+			<url>http://www.aifb.kit.edu/web/Günter_Ladwig</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Steffen Stadtmüller</name>
+			<email>steffen.stadtmueller@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Steffen_Stadtmüller</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andreas Wagner</name>
+			<email>a.wagner@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Andreas_Wagner</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Felix Obenauer</name>
+			<email>f.obenauer@googlemail.com</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Sebastian Schmidt</name>
+			<email>cumulusrdf@isibboi.de</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andrea Gazzarini</name>
+			<email>a.gazzarini@gmail.com</email>
+			<url>http://it.linkedin.com/in/andreagazzarini</url>
+		</developer>
+		<developer>
+			<name>Federico Zancan</name>
+			<email>f.zancan@gmail.com</email>
+			<url>https://www.linkedin.com/in/federicozancan</url>
+		</developer>
+	</developers>
+	<profiles>
+		<profile>
+			<id>cassandra12x-hector-full-tp-index</id>
+			<properties>
+				<configuration.file>example-cumulusRDF-Cassandra-1.2.x.yaml</configuration.file>
+				<artifact.suffix>with-cassandra-12x</artifact.suffix>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>edu.kit.aifb</groupId>
+					<artifactId>cumulusrdf-pluggable-storage-cassandra12x-hector-full-tp-index</artifactId>
+					<version>${project.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>cassandra2x-cql-full-tp-index</id>
+			<properties>
+				<configuration.file>example-cumulusRDF-Cassandra-2.x.yaml</configuration.file>
+				<artifact.suffix>with-cassandra-2x</artifact.suffix>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>edu.kit.aifb</groupId>
+					<artifactId>cumulusrdf-pluggable-storage-cassandra2x-cql-full-tp-index</artifactId>
+					<version>${project.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+	
+	<dependencies>
+		<dependency>
+			<groupId>edu.kit.aifb</groupId>
+			<artifactId>cumulusrdf-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/assembly/standalone.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

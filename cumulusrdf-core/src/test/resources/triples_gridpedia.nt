@@ -1,0 +1,367 @@
+<http://gridpedia.org/id/Thing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Thing> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Thing> .
+<http://gridpedia.org/id/Thing> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T19:54:29Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Thing> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Thing> .
+<http://gridpedia.org/id/Thing> <http://www.w3.org/2000/01/rdf-schema#label> "Thing" .
+<http://gridpedia.org/id/Thing> <http://www.w3.org/2002/07/owl#sameAs> <http://www.w3.org/2002/07/owl#Thing> .
+
+<http://gridpedia.org/id/Actor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Actor> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Actor> .
+<http://gridpedia.org/id/Actor> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:53:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Actor> <http://www.w3.org/2000/01/rdf-schema#comment> "Actors have the capability to make decisions and exchange information with other actors through interfaces. Actors my be devices, computer systems, or software programs and/or the organizations that own them. An actor may also comprise other actors. \n\nSource: NIST Framework and Roadmap for Smart Grid Interoperability Standards, National Institute of Standards and Technology (2010)."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Actor> <http://www.w3.org/2000/01/rdf-schema#comment> "Netznutzer: nat\u00FCrliche oder juristische Personen, die Energie in ein Elektrizit\u00E4ts- oder Gasversorgungsnetz einspeisen oder daraus beziehen (http://bundesrecht.juris.de/enwg_2005/__3.html).\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Actor> <http://www.w3.org/2000/01/rdf-schema#comment> "Ein Agent ist eine (nat\u00FCrliche oder juristische) Person, welche eine Transaktion auf dem Markt im Auftrag seines Kunden oder seines Arbeitgebers ausf\u00FChrt. Es kann erforderlich sein, dass f\u00FCr gewisse Transaktionen ein Personenbezug hergestellt werden kann. Regelungen des Wertpapierhandelsgesetztes sind gegebenenfalls zu ber\u00FCcksichtigen, da der Marktplatz b\u00F6rsen\u00E4hnlich aufgebaut ist.\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Actor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Actor> .
+<http://gridpedia.org/id/Actor> <http://www.w3.org/2000/01/rdf-schema#label> "Actor" .
+<http://gridpedia.org/id/Actor> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Actant> .
+<http://gridpedia.org/id/Actor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Thing> .
+
+<http://gridpedia.org/id/Device> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Device> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Device> .
+<http://gridpedia.org/id/Device> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-24T16:20:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Device> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Device> .
+<http://gridpedia.org/id/Device> <http://www.w3.org/2000/01/rdf-schema#label> "Device" .
+<http://gridpedia.org/id/Device> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Actor> .
+<http://gridpedia.org/id/Device> <http://www.w3.org/2002/07/owl#sameAs> <http://dbpedia.org/resource/Device> .
+
+<http://gridpedia.org/id/Individual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Individual> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Individual> .
+<http://gridpedia.org/id/Individual> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T14:03:32Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Individual> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Individual> .
+<http://gridpedia.org/id/Individual> <http://www.w3.org/2000/01/rdf-schema#label> "Individual" .
+<http://gridpedia.org/id/Individual> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Actor> .
+<http://gridpedia.org/id/Individual> <http://www.w3.org/2002/07/owl#sameAs> <http://dbpedia.org/resource/Individual> .
+
+<http://gridpedia.org/id/Machine> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Machine> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Machine> .
+<http://gridpedia.org/id/Machine> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T23:47:06Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Machine> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Machine> .
+<http://gridpedia.org/id/Machine> <http://www.w3.org/2000/01/rdf-schema#label> "Machine" .
+<http://gridpedia.org/id/Machine> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Actor> .
+<http://gridpedia.org/id/Machine> <http://www.w3.org/2002/07/owl#sameAs> <http://dbpedia.org/resource/Machine> .
+
+<http://gridpedia.org/id/Media> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Media> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Media> .
+<http://gridpedia.org/id/Media> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T10:52:19Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Media> <http://www.w3.org/2000/01/rdf-schema#comment> "Beschreibung:\n\n\"Medien\" ist ein Sammelbegriff f\u00FCr alle Kommunikationsmittel, die durch technische Vervielf\u00E4ltigung und Verbreitung mittels Schrift, Bild oder Ton Inhalte an eine unbestimmte Zahl von Menschen vermitteln. Hierunter fallen B\u00FCcher, Zeitschriften, Fernsehprogramme und das WorldWideWeb (siehe auch Artikel zu Internetcommunity) Im Rahmen der Elektromobilit\u00E4t umfasst der Begriff insbesondere Unternehmen, die Medien zur Kommunikation mit einem breiten Publikum nutzen.\n\n\nEinfluss der Elektromobilit\u00E4t auf den Stakeholder:\n\nDas Gesch\u00E4ftsmodell von Medienherstellern wird sich durch die Elektromobilit\u00E4t nicht \u00E4ndern. Die Elektromobilit\u00E4t bietet ein weiteres Thema \u00FCber das publiziert werden kann. Je aktueller das Thema Elektromobilit\u00E4t wird, desto mehr Artikel/ Beitr\u00E4ge werden zur Elektromobilit\u00E4t erstellt. Medienunternehmen konkurrieren untereinander um die aktuellsten Beitr\u00E4ge und popul\u00E4re Themengebiete, wie derzeit die Elektromobilit\u00E4t, veranlassen Medienunternehmen dar\u00FCber zu berichten, um das Interesse der Leser anzusprechen.\n\n\nEinfluss des Stakeholders auf die Elektromobilit\u00E4t:\n\nDie Medien werden als Mittel eingesetzt, um pro oder contra Elektromobilit\u00E4t Stellung zu beziehen. In den publizierten Artikeln spiegeln sich die Meinungen der jeweiligen Herausgeber, d.h. Medienunternehmen, Verb\u00E4nde, allerdings auch Einzelpersonen (z.B. durch Blogs) wieder. Da durch Medien sehr viele Menschen erreicht und insbesondere auch in ihrer Meinungsbildung beeinflusst werden, k\u00F6nnen Medien durch eine positive Berichterstattung die Elektromobilit\u00E4t beg\u00FCnstigen oder durch eine negative Berichterstattung behindern. Weiterhin dienen Medien h\u00E4ufig als Werbetr\u00E4ger, was im Zuge der Elektromobilit\u00E4t genutzt werden kann, um Werbung f\u00FCr Elektromobilit\u00E4t zu machen. \n\n\nInteresse, Aktuelles/ Zuk\u00FCnftiges Verhalten in Bezug auf die Elektromobilit\u00E4t:\n\nMedien berichten momentan positiv in Bezug auf die Elektromobilit\u00E4t. Hier wird vorgestellt, welche Konzepte einzelne Firmen haben oder wo bereits Versuche oder F\u00F6rderprogramme durchgef\u00FChrt werden. Aus Umweltgesichtspunkten findet Elektromobilit\u00E4t positiven Anklang, die geringe Reichweite und Lebensdauer von Batterien wird kritisch beleuchtet.\n\n\nBeispiele, Verweise:\n\n* http://hamburg.business-on.de/adac-elektromobilitaet-antrieb-rwe-sixt-hamburg-_id18075.html, Stellungnahme des ADAC\n* http://www.focus.de/auto/news/graz-oesterreich-deutschland-koennte-bei-elektromobilitaet-spitzenplatz-einnehmen_aid_436095.html, Artikel im Focus\n* http://www.spiegel.de/auto/aktuell/0,1518,662466,00.html, Artikel im Spiegel\n* http://www.sueddeutsche.de/automobil/306/491670/text/, Artikel der SZ\n* http://www.sueddeutsche.de/gesundheit/384/495707/text/, weiterer Artikel der SZ\n* http://www.sueddeutsche.de/automobil/706/488107/text/, weiterer Artikel der SZ\n\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Media> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Media> .
+<http://gridpedia.org/id/Media> <http://www.w3.org/2000/01/rdf-schema#label> "Media" .
+<http://gridpedia.org/id/Media> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Actor> .
+
+<http://gridpedia.org/id/Organization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Organization> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Organization> .
+<http://gridpedia.org/id/Organization> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T14:03:38Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Organization> <http://www.w3.org/2000/01/rdf-schema#comment> "Organizations may have actors in more than one domain. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Organization> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Organization> .
+<http://gridpedia.org/id/Organization> <http://www.w3.org/2000/01/rdf-schema#label> "Organization" .
+<http://gridpedia.org/id/Organization> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://en.openei.org/lod/data/wiki/Organizations_and_Networks> .
+<http://gridpedia.org/id/Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Actor> .
+<http://gridpedia.org/id/Organization> <http://www.w3.org/2002/07/owl#sameAs> <http://dbpedia.org/resource/Organization> .
+<http://gridpedia.org/id/Organization> <http://www.w3.org/2002/07/owl#sameAs> <http://iec.ch/TC57/2005/CIM-schema-cim10#Organization> .
+
+<http://gridpedia.org/id/SoftwareProgram> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/SoftwareProgram> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/SoftwareProgram> .
+<http://gridpedia.org/id/SoftwareProgram> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T14:03:46Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/SoftwareProgram> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/SoftwareProgram> .
+<http://gridpedia.org/id/SoftwareProgram> <http://www.w3.org/2000/01/rdf-schema#label> "SoftwareProgram" .
+<http://gridpedia.org/id/SoftwareProgram> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Computer> .
+<http://gridpedia.org/id/SoftwareProgram> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Actor> .
+
+<http://gridpedia.org/id/Building> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Building> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Building> .
+<http://gridpedia.org/id/Building> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T17:46:41Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Building> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Building> .
+<http://gridpedia.org/id/Building> <http://www.w3.org/2000/01/rdf-schema#label> "Building" .
+<http://gridpedia.org/id/Building> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Actor> .
+<http://gridpedia.org/id/Building> <http://www.w3.org/2002/07/owl#sameAs> <http://dbpedia.org/resource/Building> .
+
+<http://gridpedia.org/id/Driver> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Driver> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Driver> .
+<http://gridpedia.org/id/Driver> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T14:03:28Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#comment> "Beschreibung:\n\nDer Fahrzeugfahrer ist diejenige Person, die ein Ger\u00E4t zur Fortbewegung, ein Fahrzeug (Fahrrad, Kfz etc.), bewusst lenkt oder steuert (f\u00FChrt). Der Fahrzeugeigent\u00FCmer ist diejenige Person, der das Fahrzeug rechtlich geh\u00F6rt. Fahrer und Eigent\u00FCmer k\u00F6nnen sich unterscheiden.\n\n\nEinfluss der Elektromobilit\u00E4t auf den Stakeholder:\n\nGegen\u00FCber dem Fahren eines klassischen Automobils, legt die Nutzung eines Elektrofahrzeuge dem Autofahrer folgende Einschr\u00E4nkungen auf:\n* meist geringere Leistung\n* geringere Reichweite (derzeit 50-150 km)\n* sehr lange Ladezeit (im Vergleich zum Tanken)\n* starke Abh\u00E4ngigkeit von der Verf\u00FCgbarkeit von Ladestationen bei l\u00E4ngeren Strecken\n* st\u00E4rkere Abh\u00E4ngigkeit von der Au\u00DFentemperatur (Batterie muss beheizt werden bei niedrigen Temperaturen)\n* zus\u00E4tzliche Kosten beim Kauf durch die Batterie (z.B. Loremo Diesel 17.000\u20AC, Loremo Elektro 30.000\u20AC (http://www.loremo.com/02der02_varianten.htm)\n\n\nDurch die Elektromobilit\u00E4t wird sich der Fahrzeugeigent\u00FCmer beim Fahrzeugkauf st\u00E4rker als zuvor \u00FCber seine eigenen Anforderungen bewusst werden m\u00FCssen. Neben dem Verbrauch, dem Aussehen, der Leistung, etc. muss er nun auch die Reichweite des Fahrzeugs, sein Fahrverhalten und die Praktikabilit\u00E4t eines Elektromobils eruieren. Au\u00DFerdem wird er aufgrund des h\u00F6heren Kostenfaktors eines Elektromobils Kosten und Umweltaspekte gegeneinander abw\u00E4gen. Er wird sich des Weiteren dar\u00FCber informieren, wo es Ladestationen gibt und welche Handlungsspielr\u00E4ume er dadurch gewinnt/ verliert.\n\nDas Elektroautomobil erfordert vom Fahrzeugfahrer ein anderes Fahrverhalten, als mit einem gew\u00F6hnlichen Automobil. Durch die Beschr\u00E4nkung der Reichweite des Fahrzeugs ist der Fahrer entweder auf die maximale Reichweite beschr\u00E4nkt (unter Ber\u00FCcksichtigung von Hin- und R\u00FCckfahrt) oder aber bei einer l\u00E4ngeren Strecke gezwungen sein Fahrzeug an einer Ladestation aufzuladen. Hierdurch verringert sich die Flexibilit\u00E4t des Fahrzeugfahrers. \n\n\nEinfluss des Stakeholders auf die Elektromobilit\u00E4t:\n\nDer Fahrzeugeigent\u00FCmer steuert durch seine Nachfrage nach der Elektromobilit\u00E4t entscheidend die Zukunft des Elektroautomobils. Wird das Elektroautomobil nicht ausreichend gekauft, kann sich die Elektromobilit\u00E4t nicht etablieren. Umgekehrt f\u00FChrt ein verst\u00E4rkter Erwerb von Elektromobilen dazu, dass sich die Produktionskosten reduzieren und somit die Fahrzeuge g\u00FCnstiger werden, so dass mehr Menschen zum Kauf angeregt werden.\n\nUm die Elektromobilit\u00E4t in einem Land zu etablieren, m\u00FCssen die minimalen Anforderungen des Stakeholders erf\u00FCllt werden:\n* Es m\u00FCssen ausreichend Ladestationen vorhanden sein, damit Elektromobile geladen werden k\u00F6nnen. Dies trifft insbesondere die Verf\u00FCgbarkeit derselben am Wohnort des Stakeholders. Da nicht jeder Stakeholder die M\u00F6glichkeit hat eine eigene Ladem\u00F6glichkeit zu betreiben (z.B. in Ballungsgebieten) m\u00FCssen Ladestationen (und die zugeh\u00F6rigen Parkpl\u00E4tze) im \u00F6ffentlichen Raum in der N\u00E4he des Wohnort zur Verf\u00FCgung stehen.\n* Die Kosten eines Elektromobils d\u00FCrfen nicht teurer sein, als f\u00FCr ein herk\u00F6mmliches Automobil (hierunter fallen neben dem Anschaffungspreis auch die Ladekosten inkl. Mietkosten f\u00FCr die private Ladem\u00F6glichkeit) (http://www.alternativ-fahren.de/aktuelles/10-elektrofahrzeuge/234-das-kosten-autostrom-komplettpakete.html, Artikel zum Thema \"Das kosten Autostrom Komplettpakete\").\n\n\nInteresse, Aktuelles/ Zuk\u00FCnftiges Verhalten in Bezug auf die Elektromobilit\u00E4t:\n\nHybridfahrzeuge haben sehr hohen Anklang gefunden, wie die Absatzzahlen insb. von Toyota bezeugen (ca. 1 Mio, http://www.autosieger.de/article13247.html Toyota Hybrid Absatzzahlen). Dieses Verhalten kann sich auch f\u00FCr Elektrofahrzeuge fortsetzen. Ein Projekt der Daimler AG in London mit Elektro Smarts (http://www.spiegel.de/auto/aktuell/0,1518,494250,00.html, Spiegel Artikel zu Elektro Smarts in London) zeigt, dass diese Fahrzeuge dort einen hohen Zuspruch erfahren. Die Gr\u00FCnde hierf\u00FCr sind die Bevorzugung der Elektroautomobile durch die Stadt, die f\u00FCr konventionelle Automobile hohe \"Eintrittsgeb\u00FChren\" verlangt. Da f\u00FCr Hybrid- und Elektrofahrzeuge die Geb\u00FChr wegf\u00E4llt, f\u00FChrt das Nutzen eines Elektromobils f\u00FCr den Stakeholder zu einem deutlichen Kostenvorteil. Dies zeigt, dass Fahrzeugeigent\u00FCmer insbesondere dann Elektrofahrzeuge kaufen, wenn f\u00FCr sie dadurch ein Kostenvorteil entsteht.\nEin weiterer Anreiz kann durch ein kommunales Angebot geschaffen werden, \u00F6ffentlichen Parkraum ausschlie\u00DFlich f\u00FCr Elektroautomobile zur Verf\u00FCgung zu stellen. Hierdurch werden Fahrzeugbesitzer dazu bewogen in st\u00E4dtischem Raum mit knappem Parkplatzangebot auf Elektroautomobile umzusteigen (http://www.muenchen.ihk.de/internet/mike/ihk_geschaeftsfelder/standortpolitik/Anhaenge/Pro_Parken_Schwabing.pdf, IHK Protokoll zum Thema \"Knapper Parkraum\").\n\n \nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#comment> "The driver of a vehicle drives a vehicle and initiates the charging process. The driver can also be the owner of the vehicle, but this is not necessary. \nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Driver> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#label> "Driver" .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Process> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Owner> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Initiation> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Vehicle> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Driving> .
+<http://gridpedia.org/id/Driver> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorRole> .
+
+<http://gridpedia.org/id/EnergyAggregator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/EnergyAggregator> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/EnergyAggregator> .
+<http://gridpedia.org/id/EnergyAggregator> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T11:17:19Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/EnergyAggregator> <http://www.w3.org/2000/01/rdf-schema#comment> "An actor that aggregates energy. \nSource: NIST Framework and Roadmap for Smart Grid Interoperability Standards, National Institute of Standards and Technology (2010)."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/EnergyAggregator> <http://www.w3.org/2000/01/rdf-schema#comment> "Der Aggregator ist ein Begriff, der bei MeRegioMobil verwendet wird um unterschiedliche neu entstehende Rollen zu definieren. Der Aggregator sammelt u.a. Angebote einzelner Elektromobilit\u00E4tsteilnehmer und bietet diese dann wiederum Dritten gesammelt an. Ein Beispiel f\u00FCr einen Aggregator ist der im IKT Referenzmodell MeRegioMobil eingef\u00FChrte Regelenergieanbieter, der ausreichend Regelenergie anbieten kann, um auf dem Regelenergiemarkt zu agieren. Ein einzelnes Elektrofahrzeug kann keine ausreichende Leistung erzeugen, um als Anbieter von Regelenergie gegen\u00FCber den \u00DCbertragungsnetzbetreibern aufzutreten. Daher bezieht der Regelenergieanbieter von unterschiedlichen Fahrzeugen Regelenergie und bietet diese am Regelenergiemarkt an.\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/EnergyAggregator> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/EnergyAggregator> .
+<http://gridpedia.org/id/EnergyAggregator> <http://www.w3.org/2000/01/rdf-schema#label> "EnergyAggregator" .
+<http://gridpedia.org/id/EnergyAggregator> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.puco.ohio.gov/puco/index.cfm/consumer-information/consumer-topics/governmental-energy-aggregation-local-community-buying-power/> .
+<http://gridpedia.org/id/EnergyAggregator> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorRole> .
+
+<http://gridpedia.org/id/EnergyConsumer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/EnergyConsumer> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/EnergyConsumer> .
+<http://gridpedia.org/id/EnergyConsumer> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T14:03:29Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/EnergyConsumer> <http://www.w3.org/2000/01/rdf-schema#comment> "Letztverbraucher: Nat\u00FCrliche oder juristische Personen, die Energie f\u00FCr den eigenen Verbrauch kaufen (http://bundesrecht.juris.de/enwg_2005/__3.html).\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/EnergyConsumer> <http://www.w3.org/2000/01/rdf-schema#comment> "Kunden: Gro\u00DFh\u00E4ndler, Letztverbraucher und Unternehmen, die Energie kaufen (http://bundesrecht.juris.de/enwg_2005/__3.html).\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/EnergyConsumer> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/EnergyConsumer> .
+<http://gridpedia.org/id/EnergyConsumer> <http://www.w3.org/2000/01/rdf-schema#label> "EnergyConsumer" .
+<http://gridpedia.org/id/EnergyConsumer> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorRole> .
+<http://gridpedia.org/id/EnergyConsumer> <http://www.w3.org/2002/07/owl#sameAs> <http://dbpedia.org/resource/Consumer> .
+
+<http://gridpedia.org/id/Operator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Operator> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Operator> .
+<http://gridpedia.org/id/Operator> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T19:23:33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Operator> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Operator> .
+<http://gridpedia.org/id/Operator> <http://www.w3.org/2000/01/rdf-schema#label> "Operator" .
+<http://gridpedia.org/id/Operator> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorRole> .
+
+<http://gridpedia.org/id/Owner> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Owner> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Owner> .
+<http://gridpedia.org/id/Owner> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T14:03:38Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Owner> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Owner> .
+<http://gridpedia.org/id/Owner> <http://www.w3.org/2000/01/rdf-schema#label> "Owner" .
+<http://gridpedia.org/id/Owner> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Ownership> .
+<http://gridpedia.org/id/Owner> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorRole> .
+
+<http://gridpedia.org/id/Provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Provider> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Provider> .
+<http://gridpedia.org/id/Provider> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T00:10:41Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Provider> <http://www.w3.org/2000/01/rdf-schema#comment> "An actor may be a \"generic\" provider of a service or product. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Provider> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Provider> .
+<http://gridpedia.org/id/Provider> <http://www.w3.org/2000/01/rdf-schema#label> "Provider" .
+<http://gridpedia.org/id/Provider> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://iec.ch/TC57/2005/CIM-schema-cim10#TransmissionProvider> .
+<http://gridpedia.org/id/Provider> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://iec.ch/TC57/2005/CIM-schema-cim10#GenerationProvider> .
+<http://gridpedia.org/id/Provider> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorRole> .
+
+<http://gridpedia.org/id/Attacker> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Attacker> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Attacker> .
+<http://gridpedia.org/id/Attacker> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T09:03:03Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Attacker> <http://www.w3.org/2000/01/rdf-schema#comment> "Ein Angreifer im Szenario der Elektromobilit\u00E4t ist ein Stakeholder, welcher mit b\u00F6swilliger Absicht einen Angriff auf mindestens eine der an der Elektromobilit\u00E4t beteiligten Entit\u00E4ten ver\u00FCbt. Im Szenario der Elektromobilit\u00E4t sind verschiedene Angreifertypen m\u00F6glich, welche vorrangig anhand ihrer Motivation unterschieden werden. Im einzelnen sind dies die Angreifertypen Vandale, Hacker und Stromdieb. Der Angriff eines Vandalen ist lediglich durch mutwillige Besch\u00E4digung fremden Eigentums motiviert. Der Angreifertyp Stromdieb f\u00FChrt Angriffe mit der Absicht aus, sich auf Kosten anderer widerrechtlich Strom anzueignen. Ein Hacker nutzt Technologie \u00FCber ihren vorgesehenen Gebrauch hinaus um beispielsweise Sicherheitsl\u00FCcken zu ver\u00F6ffentlichen oder aufgrund krimineller Energie auszunutzen. Die F\u00E4higkeiten und Einschr\u00E4nkungen eines Angreifers werden dabei \u00FCber ein Angreifermodell beschrieben.\n\nIm Folgenden wird ein Angreifermodell auf Basis des Dolev-Yao-Modells, welches sich vorrangig auf die stattfindende Kommunikation fokussiert, definiert und um weitere Aspekte im Rahmen des Szenario Elektromobilit\u00E4t erweitert. Anschlie\u00DFend erfolgt eine pr\u00E4zisere Definition der existierenden Auspr\u00E4gungen eines Angreifers, indem diesen bestimmte F\u00E4higkeiten und Einschr\u00E4nkungen zugeordnet werden.\n\nF\u00E4higkeiten gem\u00E4\u00DF Dolev-Yao:\n* Omnipr\u00E4senz: Der Angreifer agiert global, d.h. er ist potentiell \u00FCberall im Netz pr\u00E4sent und hat folglich Zugriff auf alle ausgetauschten Nachrichten.\n* Kollaboration: Sind mehrere Angreifer vorhanden, teilen diese ihr Wissen miteinander. Die Zusammenarbeit kann dabei auch \u00FCber einen separaten Kanal stattfinden.\n* Abh\u00F6rf\u00E4higkeit: Der Angreifer hat Zugang zu allen, einem Kommunikationsvorgang zugeordneten Informationen.\n* Injektionsf\u00E4higkeit: Der Angreifer kann Nachrichten mit beliebigem Inhalt erzeugen und einspielen. Insbesondere kann der Angreifer auch die Sender-Identifikation einer Nachricht f\u00E4lschen.\n* Manipulationsf\u00E4higkeit: Der Angreifer kann Nachrichteninhalte ver\u00E4ndern bzw. derart verf\u00E4lschen, dass Nachrichten ohne Bearbeitung verworfen werden.\n\nEinschr\u00E4nkungen gem\u00E4\u00DF Dolev-Yao:\n* Polynomielle Gebundenheit: Der Angreifer kann Schl\u00FCsselmaterial nicht erraten, d.h. kryptografisch gesch\u00FCtzte Inhalte k\u00F6nnen nicht gelesen (Verschl\u00FCsselung) bzw. ver\u00E4ndert (Integrit\u00E4tsschutz/Authentizit\u00E4tsschutz) werden, wenn der Angreifer den Schl\u00FCssel nicht kennt.\n\nWeitere F\u00E4higkeiten im Szenario Elektromobilit\u00E4t:\n* Zugriff auf Programmspeicher: Der physische Zugriff auf Ger\u00E4te wie Ladestationen, z.B. im privaten Bereich, erm\u00F6glicht dem Angreifer die Reprogrammierung des entsprechenden Ger\u00E4ts. Diese so genannte Korrumpierung des Ger\u00E4ts beschr\u00E4nkt sich vorrangig auf die Manipulation von Software.\n* Zugriff auf Hardware: Der Angreifer kann z.B. ein Elektrofahrzeug derart manipulieren, dass Hardware (z.B. Steuerger\u00E4t) ver\u00E4ndert oder ausgetauscht werden kann.\n* Zerst\u00F6rung von Entit\u00E4ten: Der Angreifer kann Entit\u00E4ten, z.B. Lades\u00E4ulen, gewaltsam besch\u00E4digen bzw. zerst\u00F6ren.\n\nBezogen auf die existierenden Auspr\u00E4gungen eines Angreifers im Szenario  Elektromobilit\u00E4t lassen sich diese \u00FCber die folgenden F\u00E4higkeiten und Einschr\u00E4nkungen definieren:\n* Hacker: F\u00E4higkeiten und Einschr\u00E4nken gem\u00E4\u00DF Dolev-Yao sowie die F\u00E4higkeiten Zugriff auf Programmspeicher und auf Hardware\n* Stromdieb: F\u00E4higkeiten und Einschr\u00E4nken gem\u00E4\u00DF Dolev-Yao sowie die F\u00E4higkeiten Zugriff auf Programmspeicher und auf Hardware\n* Vandale: F\u00E4higkeit Zerst\u00F6rung von Entit\u00E4ten\nDie jeweiligen Auspr\u00E4gungen m\u00FCssen sich dabei nicht unbedingt in ihren F\u00E4higkeiten und Einschr\u00E4nkungen unterscheiden. Eine Unterscheidung ist aber in jedem Fall hinsichtlich der Motivation des Angreifers gegeben, wie dies am Beispiel des Hackers und Stromdiebs bereits erl\u00E4utert wurde.\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Attacker> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Attacker> .
+<http://gridpedia.org/id/Attacker> <http://www.w3.org/2000/01/rdf-schema#label> "Attacker" .
+<http://gridpedia.org/id/Attacker> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorRole> .
+
+<http://gridpedia.org/id/Type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Type> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Type> .
+<http://gridpedia.org/id/Type> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T19:58:01Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Type> <http://www.w3.org/2000/01/rdf-schema#comment> "Actors may be of a certain type."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Type> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Type> .
+<http://gridpedia.org/id/Type> <http://www.w3.org/2000/01/rdf-schema#label> "Type" .
+<http://gridpedia.org/id/Type> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Thing> .
+
+<http://gridpedia.org/id/ActorType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/ActorType> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/ActorType> .
+<http://gridpedia.org/id/ActorType> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:42:08Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/ActorType> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/ActorType> .
+<http://gridpedia.org/id/ActorType> <http://www.w3.org/2000/01/rdf-schema#label> "ActorType" .
+<http://gridpedia.org/id/ActorType> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Type> .
+
+<http://gridpedia.org/id/GovernmentActor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/GovernmentActor> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/GovernmentActor> .
+<http://gridpedia.org/id/GovernmentActor> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T18:49:41Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/GovernmentActor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/GovernmentActor> .
+<http://gridpedia.org/id/GovernmentActor> <http://www.w3.org/2000/01/rdf-schema#label> "GovernmentActor" .
+<http://gridpedia.org/id/GovernmentActor> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Government> .
+<http://gridpedia.org/id/GovernmentActor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorType> .
+
+<http://gridpedia.org/id/NonGovernmentActor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/NonGovernmentActor> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/NonGovernmentActor> .
+<http://gridpedia.org/id/NonGovernmentActor> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T19:20:59Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/NonGovernmentActor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/NonGovernmentActor> .
+<http://gridpedia.org/id/NonGovernmentActor> <http://www.w3.org/2000/01/rdf-schema#label> "NonGovernmentActor" .
+<http://gridpedia.org/id/NonGovernmentActor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorType> .
+
+<http://gridpedia.org/id/ProfitActor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/ProfitActor> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/ProfitActor> .
+<http://gridpedia.org/id/ProfitActor> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T19:46:19Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/ProfitActor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/ProfitActor> .
+<http://gridpedia.org/id/ProfitActor> <http://www.w3.org/2000/01/rdf-schema#label> "ProfitActor" .
+<http://gridpedia.org/id/ProfitActor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorType> .
+
+<http://gridpedia.org/id/NonProfitActor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/NonProfitActor> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/NonProfitActor> .
+<http://gridpedia.org/id/NonProfitActor> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T14:03:36Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/NonProfitActor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/NonProfitActor> .
+<http://gridpedia.org/id/NonProfitActor> <http://www.w3.org/2000/01/rdf-schema#label> "NonProfitActor" .
+<http://gridpedia.org/id/NonProfitActor> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Non_profit> .
+<http://gridpedia.org/id/NonProfitActor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorType> .
+
+<http://gridpedia.org/id/Stakeholder> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Stakeholder> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Stakeholder> .
+<http://gridpedia.org/id/Stakeholder> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T09:21:22Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Stakeholder> <http://www.w3.org/2000/01/rdf-schema#comment> "Die Stakeholder Analyse beschreibt die wichtigen Stakeholder bei der Einf\u00FChrung der Elektromobilit\u00E4t. Es werden diejenigen Gruppierungen (Unternehmen, Arten von Unternehmen, staatliche Einrichtungen, Individuen) identifiziert, die einen Einfluss auf die Einf\u00FChrung der Elektromobilit\u00E4t haben und bzw. oder von der Einf\u00FChrung der Elektromobilit\u00E4t betroffen sind.\n\nDie Stakeholder Analyse hilft, das Kr\u00E4ftefeld zu verstehen, in dem die Elektromobilit\u00E4t steht. Verst\u00E4ndnis dieses Kr\u00E4ftefeldes ist wichtig f\u00FCr die Gestaltung von Gesch\u00E4ftsmodellen. Im Referenzmodell ist der Einfluss der Stakeholder zu ber\u00FCcksichtigen.\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Stakeholder> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Stakeholder> .
+<http://gridpedia.org/id/Stakeholder> <http://www.w3.org/2000/01/rdf-schema#label> "Stakeholder" .
+<http://gridpedia.org/id/Stakeholder> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/ActorType> .
+
+<http://gridpedia.org/id/Relation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Relation> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Relation> .
+<http://gridpedia.org/id/Relation> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:55:48Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Relation> <http://www.w3.org/2000/01/rdf-schema#comment> "Helper class for defining n-ary relations. See also http://www.w3.org/TR/swbp-n-aryRelations/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/Relation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Relation> .
+<http://gridpedia.org/id/Relation> <http://www.w3.org/2000/01/rdf-schema#label> "Relation" .
+<http://gridpedia.org/id/Relation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Thing> .
+
+<http://gridpedia.org/id/InformationRelation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/InformationRelation> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/InformationRelation> .
+<http://gridpedia.org/id/InformationRelation> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T14:03:33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/InformationRelation> <http://www.w3.org/2000/01/rdf-schema#comment> "Used to describe information exchange between actors. \nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/InformationRelation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/InformationRelation> .
+<http://gridpedia.org/id/InformationRelation> <http://www.w3.org/2000/01/rdf-schema#label> "InformationRelation" .
+<http://gridpedia.org/id/InformationRelation> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Information> .
+<http://gridpedia.org/id/InformationRelation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Relation> .
+
+<http://gridpedia.org/id/Data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/Data> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Data> .
+<http://gridpedia.org/id/Data> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T18:28:38Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/Data> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Data> .
+<http://gridpedia.org/id/Data> <http://www.w3.org/2000/01/rdf-schema#label> "Data" .
+<http://gridpedia.org/id/Data> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Thing> .
+<http://gridpedia.org/id/Data> <http://www.w3.org/2002/07/owl#sameAs> <http://dbpedia.org/resource/Data> .
+
+<http://gridpedia.org/id/BatteryData> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/BatteryData> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/BatteryData> .
+<http://gridpedia.org/id/BatteryData> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T17:16:08Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/BatteryData> <http://www.w3.org/2000/01/rdf-schema#comment> "Data concerning the battery of an electric vehicle. For further information see charging management. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/BatteryData> <http://www.w3.org/2000/01/rdf-schema#comment> "Beschreibt den aktuellen Zustand der Batterie: Der aktuelle Batterief\u00FCllstand ist die Information \u00FCber die in der Batterie noch vorhandene Energie. Die zur R\u00FCckspeisung verf\u00FCgbare Energie kann maximal so hoch sein, wie der Batterief\u00FCllstand an sich, abz\u00FCglich des Minimalen Batterief\u00FCllstandes. Sie ist nur vorhanden, wenn die Batterie r\u00FCckspeisef\u00E4hig ist und der Fahrzeugeigent\u00FCmer R\u00FCckspeisebereitschaft definiert hat. Die Temperatursteuerung ist eine Information, die definiert, ob die Batterie klimatisiert werden muss und in welchem Temperaturbereich sie sich zu befindet hat. Ggf. enth\u00E4lt sie auch die Information \u00FCber die daf\u00FCr n\u00F6tige Energie.\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/BatteryData> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/BatteryData> .
+<http://gridpedia.org/id/BatteryData> <http://www.w3.org/2000/01/rdf-schema#label> "BatteryData" .
+<http://gridpedia.org/id/BatteryData> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Battery_(electricity)> .
+<http://gridpedia.org/id/BatteryData> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Data> .
+
+<http://gridpedia.org/id/LocationData> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/LocationData> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/LocationData> .
+<http://gridpedia.org/id/LocationData> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T19:08:31Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/LocationData> <http://www.w3.org/2000/01/rdf-schema#comment> "Location data describes a position and time interval for a particular actor.\n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/LocationData> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/LocationData> .
+<http://gridpedia.org/id/LocationData> <http://www.w3.org/2000/01/rdf-schema#label> "LocationData" .
+<http://gridpedia.org/id/LocationData> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://dbpedia.org/resource/Location_(geography)> .
+<http://gridpedia.org/id/LocationData> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://iec.ch/TC57/2005/CIM-schema-cim10#GeographicalRegion> .
+<http://gridpedia.org/id/LocationData> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://iec.ch/TC57/2005/CIM-schema-cim10#Location> .
+<http://gridpedia.org/id/LocationData> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Data> .
+
+<http://gridpedia.org/id/EnergyData> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/EnergyData> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/EnergyData> .
+<http://gridpedia.org/id/EnergyData> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T18:43:17Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/EnergyData> <http://www.w3.org/2000/01/rdf-schema#comment> "Energy data comprises data related to energy need, consumption or production. \nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/EnergyData> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/EnergyData> .
+<http://gridpedia.org/id/EnergyData> <http://www.w3.org/2000/01/rdf-schema#label> "EnergyData" .
+<http://gridpedia.org/id/EnergyData> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Data> .
+
+<http://gridpedia.org/id/LoadProfile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://gridpedia.org/id/LoadProfile> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/LoadProfile> .
+<http://gridpedia.org/id/LoadProfile> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-31T15:14:02Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/LoadProfile> <http://www.w3.org/2000/01/rdf-schema#comment> "Ein Lastprofil ist eine Zeitreihe, die f\u00FCr jeden Zeitabschnitt einen Leistungsmittelwert festlegt. \n\nBeim synthetischen Verfahren werden kundengruppenspezifische, synthetische Standardlastprofile als Basis f\u00FCr die synthetische Prognose- oder Verbrauchsganglinie verwendet. \n\nBeim analytischen Verfahren werden alle Kleinkunden durch ein Profil repr\u00E4sentiert, das aus der Summenganglinie dieser Verbrauchergruppe ermittelt wird. Diese Summenganglinie (einschl. der Netzverluste) l\u00E4sst sich aus den als Zeitreihen verf\u00FCgbaren Messungen an den Netz\u00FCbergabestellen, evtl. Einspeisungen und den mit Profilz\u00E4hlern ausgestatteten Gro\u00DFkunden berechnen.\n\nBei Sonderkunden werden viertelst\u00FCndliche Leistungsmessungen durchgef\u00FChrt, wodurch direkte Einzellastprofile zur Verf\u00FCgung stehen. Smart Metering bietet die Basis, dies auch in anderen Segmenten (Haushalte, GHD, ...) einzuf\u00FChren.\n\n\nQuelle: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/LoadProfile> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/LoadProfile> .
+<http://gridpedia.org/id/LoadProfile> <http://www.w3.org/2000/01/rdf-schema#label> "LoadProfile" .
+<http://gridpedia.org/id/LoadProfile> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://gridpedia.org/id/Data> .
+
+<http://gridpedia.org/id/flow> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://gridpedia.org/id/flow> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:Flow> .
+<http://gridpedia.org/id/flow> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T20:36:27Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/flow> <http://www.w3.org/2000/01/rdf-schema#comment> "Actors can have a data or electric flow between each other.\n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/flow> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/Thing> .
+<http://gridpedia.org/id/flow> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:Flow> .
+<http://gridpedia.org/id/flow> <http://www.w3.org/2000/01/rdf-schema#label> "Flow" .
+<http://gridpedia.org/id/flow> <http://www.w3.org/2000/01/rdf-schema#range> <http://gridpedia.org/id/Thing> .
+
+<http://gridpedia.org/id/dataFlow> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://gridpedia.org/id/dataFlow> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:DataFlow> .
+<http://gridpedia.org/id/dataFlow> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T20:26:48Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/dataFlow> <http://www.w3.org/2000/01/rdf-schema#comment> "Actors can exchange data with other actors. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/dataFlow> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/Actor> .
+<http://gridpedia.org/id/dataFlow> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:DataFlow> .
+<http://gridpedia.org/id/dataFlow> <http://www.w3.org/2000/01/rdf-schema#label> "DataFlow" .
+<http://gridpedia.org/id/dataFlow> <http://www.w3.org/2000/01/rdf-schema#range> <http://gridpedia.org/id/InformationRelation> .
+<http://gridpedia.org/id/dataFlow> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://gridpedia.org/id/flow> .
+
+<http://gridpedia.org/id/recipient> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://gridpedia.org/id/recipient> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:Recipient> .
+<http://gridpedia.org/id/recipient> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T20:55:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/recipient> <http://www.w3.org/2000/01/rdf-schema#comment> "Points to the receiving Actor. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/recipient> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/Relation> .
+<http://gridpedia.org/id/recipient> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:Recipient> .
+<http://gridpedia.org/id/recipient> <http://www.w3.org/2000/01/rdf-schema#label> "Recipient" .
+<http://gridpedia.org/id/recipient> <http://www.w3.org/2000/01/rdf-schema#range> <http://gridpedia.org/id/Actor> .
+
+<http://gridpedia.org/id/data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://gridpedia.org/id/data> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:Data> .
+<http://gridpedia.org/id/data> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:37:49Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/data> <http://www.w3.org/2000/01/rdf-schema#comment> "Points to the \"payload\" data of the relation. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/data> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/Relation> .
+<http://gridpedia.org/id/data> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:Data> .
+<http://gridpedia.org/id/data> <http://www.w3.org/2000/01/rdf-schema#label> "Data" .
+<http://gridpedia.org/id/data> <http://www.w3.org/2000/01/rdf-schema#range> <http://gridpedia.org/id/Data> .
+
+<http://gridpedia.org/id/role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://gridpedia.org/id/role> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:Role> .
+<http://gridpedia.org/id/role> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:37:42Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/role> <http://www.w3.org/2000/01/rdf-schema#comment> "Actors can be assigned to role. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/role> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/Relation> .
+<http://gridpedia.org/id/role> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:Role> .
+<http://gridpedia.org/id/role> <http://www.w3.org/2000/01/rdf-schema#label> "Role" .
+<http://gridpedia.org/id/role> <http://www.w3.org/2000/01/rdf-schema#range> <http://gridpedia.org/id/ActorRole> .
+
+<http://gridpedia.org/id/attribute> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://gridpedia.org/id/attribute> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:Attribute> .
+<http://gridpedia.org/id/attribute> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:37:43Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/attribute> <http://www.w3.org/2000/01/rdf-schema#comment> "Data may have attributes."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/attribute> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/Data> .
+<http://gridpedia.org/id/attribute> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:Attribute> .
+<http://gridpedia.org/id/attribute> <http://www.w3.org/2000/01/rdf-schema#label> "Attribute" .
+<http://gridpedia.org/id/attribute> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
+
+<http://gridpedia.org/id/value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://gridpedia.org/id/value> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:Value> .
+<http://gridpedia.org/id/value> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:37:47Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/value> <http://www.w3.org/2000/01/rdf-schema#comment> "Points to the amount of energy. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/value> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/Data> .
+<http://gridpedia.org/id/value> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:Value> .
+<http://gridpedia.org/id/value> <http://www.w3.org/2000/01/rdf-schema#label> "Value" .
+<http://gridpedia.org/id/value> <http://www.w3.org/2000/01/rdf-schema#range> <http://people.aifb.kit.edu/awa/2011/smartgrid/schema/datatypes/sg#watt> .
+<http://gridpedia.org/id/value> <http://www.w3.org/2002/07/owl#sameAs> <http://purl.org/linked-data/sdmx/2009/measure#obsValue> .
+
+<http://gridpedia.org/id/timeStampStart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://gridpedia.org/id/timeStampStart> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:TimeStampStart> .
+<http://gridpedia.org/id/timeStampStart> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:37:47Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/timeStampStart> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/EnergyData> .
+<http://gridpedia.org/id/timeStampStart> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:TimeStampStart> .
+<http://gridpedia.org/id/timeStampStart> <http://www.w3.org/2000/01/rdf-schema#label> "TimeStampStart" .
+
+<http://gridpedia.org/id/duration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://gridpedia.org/id/duration> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:Duration> .
+<http://gridpedia.org/id/duration> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:37:47Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/duration> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/EnergyData> .
+<http://gridpedia.org/id/duration> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:Duration> .
+<http://gridpedia.org/id/duration> <http://www.w3.org/2000/01/rdf-schema#label> "Duration" .
+<http://gridpedia.org/id/duration> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dayTimeDuration> .
+
+<http://gridpedia.org/id/locationLong> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://gridpedia.org/id/locationLong> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:LocationLong> .
+<http://gridpedia.org/id/locationLong> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T20:48:32Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/locationLong> <http://www.w3.org/2000/01/rdf-schema#comment> "Points to the longitude value of the location. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/locationLong> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/LocationData> .
+<http://gridpedia.org/id/locationLong> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:LocationLong> .
+<http://gridpedia.org/id/locationLong> <http://www.w3.org/2000/01/rdf-schema#label> "LocationLong" .
+<http://gridpedia.org/id/locationLong> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+
+<http://gridpedia.org/id/locationLat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://gridpedia.org/id/locationLat> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:LocationLat> .
+<http://gridpedia.org/id/locationLat> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-01-30T20:48:32Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/locationLat> <http://www.w3.org/2000/01/rdf-schema#comment> "Points to the latitude value of the location. \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/locationLat> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/LocationData> .
+<http://gridpedia.org/id/locationLat> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:LocationLat> .
+<http://gridpedia.org/id/locationLat> <http://www.w3.org/2000/01/rdf-schema#label> "LocationLat" .
+<http://gridpedia.org/id/locationLat> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+
+<http://gridpedia.org/id/emission> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://gridpedia.org/id/emission> <http://semantic-mediawiki.org/swivt/1.0#page> <http://gridpedia.org/wiki/Property:Emission> .
+<http://gridpedia.org/id/emission> <http://semantic-mediawiki.org/swivt/1.0#wikiPageModificationDate> "2012-02-01T09:37:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://gridpedia.org/id/emission> <http://www.w3.org/2000/01/rdf-schema#comment> "Points to the amount of emission measured in gram CO2eq (CO2 equivalent). \n\nSource: MeRegioMobil http://meregiomobil.forschung.kit.edu/."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://gridpedia.org/id/emission> <http://www.w3.org/2000/01/rdf-schema#domain> <http://gridpedia.org/id/EnergyData> .
+<http://gridpedia.org/id/emission> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://gridpedia.org/wiki/Property:Emission> .
+<http://gridpedia.org/id/emission> <http://www.w3.org/2000/01/rdf-schema#label> "Emission" .
+<http://gridpedia.org/id/emission> <http://www.w3.org/2000/01/rdf-schema#range> <http://people.aifb.kit.edu/awa/2011/smartgrid/schema/datatypes/sg#gramCO2eq> .
+<http://gridpedia.org/id/emission> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://iec.ch/TC57/2005/CIM-schema-cim10#Emission> .
+

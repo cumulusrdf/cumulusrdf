@@ -1,0 +1,187 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>cumulusrdf</artifactId>
+		<groupId>edu.kit.aifb</groupId>
+		<version>1.1.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>cumulusrdf-core</artifactId>
+	<name>CumulusRDF: Core module</name>
+	<url>http://code.google.com/p/cumulusrdf/</url>
+	<description>Module containing core CumulusRDF classes. </description>
+
+
+	<organization>
+		<name>AIFB, KIT</name>
+		<url>http://www.aifb.kit.edu/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Andreas Harth</name>
+			<email>harth@kit.edu</email>
+			<url>http://harth.org/andreas/</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Günter Ladwig </name>
+			<email>guenter.ladwig@kit.edu </email>
+			<url>http://www.aifb.kit.edu/web/Günter_Ladwig</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Steffen Stadtmüller</name>
+			<email>steffen.stadtmueller@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Steffen_Stadtmüller</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andreas Wagner</name>
+			<email>a.wagner@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Andreas_Wagner</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Felix Obenauer</name>
+			<email>f.obenauer@googlemail.com</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Sebastian Schmidt</name>
+			<email>cumulusrdf@isibboi.de</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andrea Gazzarini</name>
+			<email>a.gazzarini@gmail.com</email>
+			<url>http://it.linkedin.com/in/andreagazzarini</url>
+		</developer>
+	</developers>
+
+	<profiles>
+		<profile>
+			<id>cassandra12x-hector-full-tp-index</id>
+			<properties>
+				<test.suite.storage.runner>edu.kit.aifb.cumulus.test.framework.runners.Cassandra12xRunner</test.suite.storage.runner>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>edu.kit.aifb</groupId>
+					<artifactId>cumulusrdf-pluggable-storage-cassandra12x-hector-full-tp-index</artifactId>
+					<version>${project.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>cassandra2x-cql-full-tp-index</id>
+			<properties>
+				<test.suite.storage.runner>edu.kit.aifb.cumulus.test.framework.runners.Cassandra2xRunner</test.suite.storage.runner>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>edu.kit.aifb</groupId>
+					<artifactId>cumulusrdf-pluggable-storage-cassandra2x-cql-full-tp-index</artifactId>
+					<version>${project.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+	<dependencies>
+
+		<!-- Cumulus -->
+		<dependency>
+			<groupId>edu.kit.aifb</groupId>
+			<artifactId>cumulusrdf-framework</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.kit.aifb</groupId>
+			<artifactId>cumulusrdf-test-framework</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Sesame -->
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-runtime</artifactId>
+			<version>${sesame.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Sesame: JsonLD parser/writer: https://github.com/jsonld-java/jsonld-java -->
+		<dependency>
+			<groupId>com.github.jsonld-java</groupId>
+			<artifactId>jsonld-java-sesame</artifactId>
+			<version>0.4.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.openrdf.sesame</groupId>
+					<artifactId>sesame-model</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.openrdf.sesame</groupId>
+					<artifactId>sesame-rio-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Sesame: RDFa parser: http://semarglproject.org -->
+		<dependency>
+			<groupId>org.semarglproject</groupId>
+			<artifactId>semargl-rdfa</artifactId>
+			<version>0.6.1</version>
+		</dependency>
+
+		<!-- Misc -->
+		<dependency>
+			<groupId>com.googlecode.concurrentlinkedhashmap</groupId>
+			<artifactId>concurrentlinkedhashmap-lru</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-cli</groupId>
+			<artifactId>commons-cli</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

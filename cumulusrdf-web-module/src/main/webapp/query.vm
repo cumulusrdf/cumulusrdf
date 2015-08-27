@@ -1,0 +1,78 @@
+#if(!$store.open)
+	<div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> CumulusRDF is not open!</div>
+#end
+<form class="form-horizontal" role="form" action="sparql">
+     <div class="form-group">
+        <label for="query" class="col-sm-1 control-label">SPARQL</label>
+        <div class="col-sm-10">
+			#if ($request.query)
+				#set($query = $request.query)
+			#else
+				#set($query = "")
+			#end	
+			<textarea type="text" class="form-control" id="query" name="query" rows="9" placeholder="Enter SPARQL 1.1 query">$query</textarea>
+			<input type="hidden" name="accept" value="text/html"/>
+		</div>
+    </div>
+	<div class="form-group">
+       <div class="col-sm-offset-1 col-sm-10">
+         <button type="submit" class="btn btn-success">Execute</button>
+       </div>
+	</div>
+</form>
+<hr/>
+<div id="result">
+#if ($request.isThereAResult)
+    #if($request.tupleQuery)
+    	#set($names = $request.tupleResult.bindingNames)
+		<h2 class="sub-header">Tuple Result</h2>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+					#foreach($name in $names)
+						<th>$name</th>
+					#end
+					</tr>
+				</thead>
+				<tbody>	
+				#foreach($bindingSet in $request.wrappedResult)
+					<tr>
+						#foreach($name in $names)
+							<td><small>$bindingSet.getValue($name)</small></td>
+						#end
+					</tr>
+            	#end	
+				</tbody>
+			</table>
+		</div>
+    #elseif($request.booleanQuery)
+        <div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> Your query evaluated to: <strong>$request.result</strong></div>
+        <a href="query" class="btn btn-success active" role="button">Back</a>		
+    #elseif($request.graphQuery)
+		<h2 class="sub-header">Graph Result</h2>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Subject</th>
+						<th>Predicate</th>
+						<th>Object</th>
+					</tr>
+				</thead>
+				<tbody>	
+					#foreach($statement in $request.wrappedResult)
+						<tr>
+							<td><small>$statement.subject</small></td>
+							<td><small>$statement.predicate</small></td>
+							<td><small>$statement.object</small></td>
+						</tr>
+					#end	
+				</tbody>
+			</table>
+		</div>
+    #end	
+#elseif ($request.query)
+<div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> No result for this query.</strong></div>	
+#end	
+</div>

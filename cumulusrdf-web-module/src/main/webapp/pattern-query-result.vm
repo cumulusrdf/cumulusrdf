@@ -1,0 +1,43 @@
+<div class="well">
+	#if ($request.uri)
+    	<em>URI</em> <br/><br/>
+    	$request.uri
+		#set($title = "Describe Result")
+	#else
+		#set($title = "Pattern Result")
+    	#set($layoutType = $application.getAttribute($field.LAYOUT))
+    	#set($isQuad = ($layoutType == "quad"))
+    	<em>PATTERN</em> <br/><br/>
+    	{
+    	#if ($request.s && $request.s.trim() != "") $request.s #else <strong>?s</strong> #end
+    	#if ($request.p && $request.p.trim() != "") $request.p #else <strong>?p</strong> #end
+    	#if ($request.o && $request.o.trim() != "") $request.o #else <strong>?o</strong> #end
+    	#if ($isQuad && $request.c && $request.c.trim() != "") $request.c #else <strong>?c</strong> #end . }
+	#end			
+</div>
+#if($request.result)
+<h2 class="sub-header">Pattern Result</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+			<th>Subject</th>
+			<th>Predicate</th>
+			<th>Object</th>
+        </tr>
+      </thead>
+      <tbody>	
+		#foreach($statement in $request.result)
+		  <tr>
+			<td><small>$statement.get(0)</small></td>
+			<td><small>$statement.get(1)</small></td>
+			<td><small>$statement.get(2)</small></td>
+		  </tr>
+		#end	
+      </tbody>
+    </table>
+  </div>
+#else
+<div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> No result for this query.</strong></div>	
+#end	
+<a href="query" class="btn btn-success active" role="button">Back</a>

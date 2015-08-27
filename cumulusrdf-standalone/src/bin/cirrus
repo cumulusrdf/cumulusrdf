@@ -1,0 +1,81 @@
+#!/bin/sh
+### ====================================================================== ###
+##                                                                          ##
+##  CumulusRDF Standalone + CLI bootstrap Script                            ##
+##                                                                          ##
+### ====================================================================== ###
+
+JAVA_REQUIRED_VERSION=1.7
+
+if [ -z "$CRDF_CLI_HOME" ]; then
+    CRDF_CLI_HOME=`cd ..; pwd`
+fi
+export CRDF_CLI_HOME
+
+JAVA_OPTS="-Dlog.dir=$CRDF_CLI_HOME/logs"
+if [ ! -d "$CRDF_CLI_HOME/logs" ]; then
+	mkdir -p $CRDF_CLI_HOME/logs
+fi
+
+CLASSPATH=$CRDF_CLI_HOME/lib/*:$CRDF_CLI_HOME/etc
+
+if [ -z "$JAVA" ]; then
+    if [ -n "$JAVA_HOME" ]; then
+        export JAVA="$JAVA_HOME/bin/java"
+    else
+        export JAVA="java"
+    fi
+fi
+
+$JAVA -version 2> /dev/null > /dev/null
+if [ $? -eq 0 ]; then
+	JAVA_FOUND=1
+else
+	JAVA_FOUND=0
+fi
+
+if [ $JAVA_FOUND -eq 1 ]; then
+	JAVA_VERSION_OK=`$JAVA -version 2>&1 | grep -E "^java version" | head -1 | sed 's/"//g' | cut -d" " -f 3 | sed 's/[.][0-9][0-9]*[0-9]*[_].*//' | awk -v n1=$JAVA_REQUIRED_VERSION '{ if ($1 >= n1) { print "OK"; } else { print "NOK"; } }'`
+else
+	JAVA_VERSION_OK="NOK"
+fi
+
+clear
+cat <<EOT
+   .d8888b.  d8b
+  d88P  Y88b Y8P
+  888    888
+  888        888 888d888 888d888 888  888 .d8888b
+  888        888 888P"   888P"   888  888 88K
+  888    888 888 888     888     888  888 "Y8888b.
+  Y88b  d88P 888 888     888     Y88b 888      X88
+   "Y8888P"  888 888     888      "Y88888  88888P'
+EOT
+echo "========================================================================="
+echo "  CumulusRDF standalone bootstrap environment"
+echo ""
+echo "  CRDF_CLI_HOME: $CRDF_CLI_HOME"
+echo ""
+echo "  JAVA: $JAVA"
+if [ "$JAVA_VERSION_OK" = "OK" ]; then
+	echo "  ... seems good."
+else
+	echo ""
+	echo "WARNING: In order to run CumulusRDF you need Java version $JAVA_REQUIRED_VERSION or higher."
+	echo "Please check your JAVA_HOME environment variable."
+	echo "========================================================================="
+	echo ""
+	echo ""
+	exit 127
+fi
+echo ""
+echo "  JAVA_OPTS: $JAVA_OPTS"
+echo ""
+echo "  CLASSPATH: $CLASSPATH"
+echo ""
+echo "========================================================================="
+echo ""
+
+"$JAVA" $JAVA_OPTS \
+         -classpath "$CLASSPATH" \
+         edu.kit.aifb.cumulus.cli.Cirrus "$@"

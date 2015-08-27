@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>io.teknek</groupId>
+  <artifactId>farsandra</artifactId>
+  <version>0.0.5-CumulusRDF-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <lastUpdated>20140619221446</lastUpdated>
+  </versioning>
+</metadata>

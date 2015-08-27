@@ -1,0 +1,6 @@
+<div class="well">
+	<pre>$request.query</pre>
+</div>
+
+<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> Your query evaluated to: <strong>$request.result</strong></div>
+<a href="query" class="btn btn-success active" role="button">Back</a>

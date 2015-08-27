@@ -1,0 +1,26 @@
+#if($request.wrappedResult)
+<h2 class="sub-header">Graph Result</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+			<th>Subject</th>
+			<th>Predicate</th>
+			<th>Object</th>
+        </tr>
+      </thead>
+      <tbody>	
+		#foreach($statement in $request.wrappedResult)
+		  <tr>
+			<td><small>$statement.subject</small></td>
+			<td><small>$statement.predicate</small></td>
+			<td><small>$statement.object</small></td>
+		  </tr>
+		#end	
+      </tbody>
+    </table>
+  </div>
+#else
+<div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> No result for this query.</strong></div>	
+#end	
+<a href="query" class="btn btn-success active" role="button">Back</a>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>CumulusRDF</display-name>
+
+	<listener>
+		<listener-class>edu.kit.aifb.cumulus.webapp.Listener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>
+			org.apache.commons.fileupload.servlet.FileCleanerCleanup</listener-class>
+	</listener>
+
+	<!-- VELOCITY -->
+	<servlet>
+		<servlet-name>velocity</servlet-name>
+		<servlet-class>org.apache.velocity.tools.view.VelocityLayoutServlet</servlet-class>
+		<init-param>
+			<param-name>org.apache.velocity.tools.deprecationSupportMode</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.apache.velocity.tools.cleanConfiguration</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.apache.velocity.tools.userCanOverwriteTools</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- CONTROLLERS -->
+	<servlet>
+		<servlet-name>ld</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.LinkedDataServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>error</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.ErrorServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>sparql</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.SPARQLServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>load</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.LoadServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>crud</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.CRUDServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>sesame</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.endpoint.SesameHTTPProtocolEndpoint</servlet-class>
+	</servlet>
+
+	<!-- VIEW CONTROLLERS -->
+	<servlet>
+		<servlet-name>links</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.gui.LinksServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>nyi</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.gui.FeatureNotYetImplementedServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>query</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.gui.QueryServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>addOrLoad</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.gui.AddOrLoadServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>info</servlet-name>
+		<servlet-class>edu.kit.aifb.cumulus.webapp.InfoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>velocity</servlet-name>
+		<url-pattern>*.vm</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>error</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>links</servlet-name>
+		<url-pattern>/links</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>query</servlet-name>
+		<url-pattern>/query</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>addOrLoad</servlet-name>
+		<url-pattern>/addOrLoad</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>info</servlet-name>
+		<url-pattern>/info</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>sparql</servlet-name>
+		<url-pattern>/sparql</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>crud</servlet-name>
+		<url-pattern>/crud</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>load</servlet-name>
+		<url-pattern>/load</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>nyi</servlet-name>
+		<url-pattern>/nyi</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ld</servlet-name>
+		<url-pattern>/resource/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>sesame</servlet-name>
+		<url-pattern>/repositories/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>sesame</servlet-name>
+		<url-pattern>/protocol</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>info</welcome-file>
+	</welcome-file-list>
+</web-app>

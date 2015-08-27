@@ -1,0 +1,12 @@
+<div class="well well-lg">
+	Here you can find some useful links about CumulusRDF project.
+</div>
+<div class="alert alert-info"><span class="glyphicon glyphicon-globe"></span>
+	<a target="new" href="http://code.google.com/p/cumulusrdf"> CumulusRDF project page</a>
+</div>
+<div class="alert alert-info"><span class="glyphicon glyphicon-user"></span>
+	<a target="new" href="https://groups.google.com/forum/#!forum/cumulusrdf-dev-list"> CumulusRDF Developers Group</a>
+</div>
+<div class="alert alert-info"><span class="glyphicon glyphicon-tasks"></span>
+	<a target="new" href="https://groups.google.com/forum/#!forum/cumulusrdf-list"> CumulusRDF Users Group</a>
+</div>

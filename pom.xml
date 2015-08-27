@@ -1,0 +1,153 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<sesame.version>2.7.10</sesame.version>
+		<velocity.tools.version>2.0</velocity.tools.version>
+		<servlet.api.version>2.5</servlet.api.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<junit.version>4.11</junit.version>
+		<mockito.version>1.9.5-rc1</mockito.version>
+		<jsr311.version>1.1.1</jsr311.version>
+		<embedded.cassandra.plugin.version>1.2.0-1</embedded.cassandra.plugin.version>
+		<embedded.tomcat.plugin.version>2.1</embedded.tomcat.plugin.version>
+		<tomcat.version>7.0.26</tomcat.version>
+		<!-- This is here just to indicate there's a property with this name but without a default value. -->
+		<test.suite.storage.runner>INVALID RUNNER</test.suite.storage.runner>
+	</properties>
+
+	<groupId>edu.kit.aifb</groupId>
+	<artifactId>cumulusrdf</artifactId>
+	<packaging>pom</packaging>
+	<name>CumulusRDF: Top Level Project</name>
+	<version>1.1.0-SNAPSHOT</version>
+
+	<description>CumulusRDF is an RDF store on cloud-based architectures. CumulusRDF provides a REST-based API with CRUD operations to manage RDF data. 
+The current version uses Apache Cassandra as storage backend. A previous version is built on Google's AppEngine. 
+CumulusRDF is licensed under GNU Affero General Public License.</description>
+	<url>http://code.google.com/p/cumulusrdf/</url>
+	<organization>
+		<name>AIFB, KIT</name>
+		<url>http://www.aifb.kit.edu/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Andreas Harth</name>
+			<email>harth@kit.edu</email>
+			<url>http://harth.org/andreas/</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Günter Ladwig </name>
+			<email>guenter.ladwig@kit.edu </email>
+			<url>http://www.aifb.kit.edu/web/Günter_Ladwig</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Steffen Stadtmüller</name>
+			<email>steffen.stadtmueller@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Steffen_Stadtmüller</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andreas Wagner</name>
+			<email>a.wagner@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Andreas_Wagner</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Felix Obenauer</name>
+			<email>f.obenauer@googlemail.com</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Sebastian Schmidt</name>
+			<email>cumulusrdf@isibboi.de</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andrea Gazzarini</name>
+			<email>a.gazzarini@gmail.com</email>
+			<url>http://it.linkedin.com/in/andreagazzarini</url>
+		</developer>
+	</developers>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<systemProperties>
+						<property>
+							<name>storage.runner</name>
+							<value>${test.suite.storage.runner}</value>
+						</property>
+					</systemProperties>
+					<includes>
+						<include>**/*TestSuite.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<instrumentation>
+						<excludes>
+							<exclude>**/*CumulusTestSuite.class</exclude>
+							<exclude>**/*TestUtils.class</exclude>
+							<exclude>**/*TestCase.class</exclude>
+							<exclude>**/*Test.class</exclude>
+							<exclude>**/*Exception.class</exclude>
+						</excludes>
+					</instrumentation>
+					<check>
+						<haltOnFailure>false</haltOnFailure>
+						<lineRate>80</lineRate>
+						<branchRate>80</branchRate>
+						<totalLineRate>80</totalLineRate>
+						<totalBranchRate>80</totalBranchRate>
+					</check>
+					<format>xml</format>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+		</plugins>
+	</build>
+	<modules>
+		<module>cumulusrdf-framework</module>
+		<module>cumulusrdf-test-framework</module>
+		<module>cumulusrdf-pluggable-storage</module>		
+		<module>cumulusrdf-core</module>
+		<module>cumulusrdf-web-module</module>
+		<module>cumulusrdf-standalone</module>
+		<module>cumulusrdf-integration-tests</module>
+	</modules>
+</project>

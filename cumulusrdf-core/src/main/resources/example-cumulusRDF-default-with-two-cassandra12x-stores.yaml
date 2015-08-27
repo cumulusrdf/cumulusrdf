@@ -1,0 +1,109 @@
+--- 
+##########################################
+##	CumulusRDF configuration	##
+##########################################
+
+default-store-id: "id1"
+
+##### Dictionary ######
+
+# Known URIs cache size: the size of the (LRU) cache CumulusRDF will use for well known URIs, that is, URIs belonging to known vocabularies.
+id1.known-uris-id-cache-size: 2000
+id1.known-uris-value-cache-size: 2000
+id2.known-uris-id-cache-size: 2500
+id2.known-uris-value-cache-size: 2500
+
+# Namespaces cache size: the size of the (LRU) cache CumulusRDF will use for namespaces. 
+# Note that well-known namespaces are not involved in this cache. 
+id1.namespaces-cache-size: 1000
+id1.namespaces-id-cache-size: 1000
+id2.namespaces-cache-size: 1500
+id2.namespaces-value-cache-size: 1500
+
+# Local names cache size: the size of the (LRU) cache CumulusRDF will use for local names. 
+# Note that well-known URIs are not involved in this cache. 
+id1.localnames-id-cache-size: 10000
+id1.localnames-value-cache-size: 10000
+id2.localnames-id-cache-size: 10500
+id2.localnames-value-cache-size: 10500
+
+# Literals and blank nodes cache size: the size of the (LRU) cache CumulusRDF will use for literals and blank nodes.
+# Note that well-known URIs are not involved in this cache. 
+id1.literals-bnodes-id-cache-size: 50000
+id1.literals-bnodes-value-cache-size: 50000
+id2.literals-bnodes-id-cache-size: 50500
+id2.literals-bnodes-value-cache-size: 50500
+
+# Short and long literals are handled differently because their size. 
+# Shortly, CumulusRDF will assign variable length identifiers to "short" literals and blank nodes, while for long literals a short and fixed-length identifiers
+# will be generated. This configuration parameter determines when a literal has to be considered "short" or "long".  
+id1.long-literals-threshold: 1000
+id2.long-literals-threshold: 1500
+
+##### Index ######
+
+# Storage layout: allowed values are triple or quad
+id1.storage-layout: "triple"
+id2.storage-layout: "quad"
+
+# Build additional index for range queries over time and
+# numerical values, e.g., queries like: SELECT * WHERE { ?s ?p ?o FILTER(?o >= "10"^^xsd:double ) }.
+# Values: true, false.
+# Default value: false.
+id1.storage-index-ranges: true
+id2.storage-index-ranges: false
+
+##### Servlets ######
+
+# The base URI of resources within the data store.
+# Example: http://localhost:8080/cumulusrdf
+# Default: empty (i.e., internal base URI = external base URI).
+# id1.internal-base-URI:
+# id2.internal-base-URI:
+
+# The base URI of resources as they are to be seen on the Web (exposed via, e.g., the Linked Data servlet).
+# Example: http://example.org
+# Default: empty (i.e., internal base URI = external base URI).
+# id1.external-base-URI:
+# id2.external-base-URI:
+
+#############################################################################################
+## This section contains a default configuration for all supported kind of storages.       ##
+## So at runtime, following the procedure described in Wiki, CumulusRDF will use just one  ##
+## of the following (depending on the runtime storage module you plug-in).                 ##
+#############################################################################################
+
+########################################################
+## 		Cassandra configuration		      ##
+##						      ##
+## Please see 					      ##
+##  * http://www.datastax.com/docs		      ##
+##  * http://cassandra.apache.org/		      ##
+########################################################
+
+# Cassandra nodes that CumulusRDF should connect to
+# comma-seperated list of "<host>:<port>" entries
+id1.cassandra-hosts: "localhost:9160"
+id1.cassandra-hosts: "localhost:9160"
+
+# Keyspace in Cassandra cluster.
+# By using several keyspaces, multiple CumulusRDF instances
+# can store data in the same Cassandra cluster.
+# Default value: "KeyspaceCumulus".
+id1.cassandra-keyspace: "KeyspaceCumulus1"
+id1.cassandra-keyspace: "KeyspaceCumulus2"
+
+# Number of replicas across the cassandra cluster.
+# Default value: 1.
+id1.cassandra-replication-factor: 1
+id2.cassandra-replication-factor: 2
+
+# Cassandra read consistency.
+# Default value: ONE.
+id1.cassandra-read-consistency: "ONE"
+id2.cassandra-read-consistency: "ONE"
+
+# Cassandra write consistency.
+# Default value: ONE.
+id1.cassandra-write-consistency: "ONE"
+id2.cassandra-write-consistency: "ONE"

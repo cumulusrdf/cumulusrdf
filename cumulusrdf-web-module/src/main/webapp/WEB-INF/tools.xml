@@ -1,0 +1,7 @@
+ <tools>
+   <toolbox scope="application">
+     <tool 
+		class="org.apache.velocity.tools.generic.FieldTool"
+		include="edu.kit.aifb.cumulus.webapp.HttpProtocol,edu.kit.aifb.cumulus.framework.Environment.ConfigParams"/>
+   </toolbox>
+ </tools>

@@ -1,0 +1,8 @@
+<div class="well">
+	The CumulusRDF store is a Linked Data server built on 
+	<a target="new" href="http://cassandra.apache.org/">Apache Cassandra</a>. 
+	<br/>Applications can interface with it using a <a target="new" href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> API as well as various traditional Java-Servlets, meaning that all operations are carried out over 
+	<a target="new" href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a>.
+	More information can be found on our <a target="new" href="http://code.google.com/p/cumulusrdf">CumulusRDF project page</a>.
+</div>
+<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> At the moment, this feature is not available in the Web console. Feature is coming soon ...</div>

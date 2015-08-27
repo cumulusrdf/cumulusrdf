@@ -1,0 +1,15 @@
+CumulusRDF is a Linked Data server using Apache Cassandra.
+See http://code.google.com/p/cumulusrdf/
+
+### CUMULUS-RDF STANDALONE ###
+
+The bundle include CumulusRDF standalone with CLIs.
+
+- bin: folder containing script(s)
+- etc: CumulusRDF configuration files. Please check your application and loggin settings here before running.
+- lib: CumulusRDF and third-party libs
+
+### HOW TO RUN ###
+
+1. cd to "bin" folder or alternatively include "bin" folder on your PATH
+2. run cirrus without arguments and you will get a usage message with all available commands.

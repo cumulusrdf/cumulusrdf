@@ -1,0 +1,212 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>cumulusrdf</artifactId>
+		<groupId>edu.kit.aifb</groupId>
+		<version>1.1.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>cumulusrdf-web-module</artifactId>
+	<packaging>war</packaging>
+	<name>CumulusRDF: Web module</name>
+
+	<organization>
+		<name>AIFB, KIT</name>
+		<url>http://www.aifb.kit.edu/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Andreas Harth</name>
+			<email>harth@kit.edu</email>
+			<url>http://harth.org/andreas/</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Günter Ladwig </name>
+			<email>guenter.ladwig@kit.edu </email>
+			<url>http://www.aifb.kit.edu/web/Günter_Ladwig</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Steffen Stadtmüller</name>
+			<email>steffen.stadtmueller@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Steffen_Stadtmüller</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andreas Wagner</name>
+			<email>a.wagner@kit.edu</email>
+			<url>http://www.aifb.kit.edu/web/Andreas_Wagner</url>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Felix Obenauer</name>
+			<email>f.obenauer@googlemail.com</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Sebastian Schmidt</name>
+			<email>cumulusrdf@isibboi.de</email>
+			<organization>AIFB, KIT</organization>
+		</developer>
+		<developer>
+			<name>Andrea Gazzarini</name>
+			<email>a.gazzarini@gmail.com</email>
+			<url>http://it.linkedin.com/in/andreagazzarini</url>
+		</developer>
+		<developer>
+			<name>Yongtao Ma</name>
+			<email>mayongtao@gmail.com</email>
+			<organization>AIFB, KIT</organization>
+			<url>http://www.aifb.kit.edu/web/Yongtao_Ma</url>
+		</developer>
+	</developers>
+
+	<dependencies>
+
+		<!-- Cumulus -->
+		<dependency>
+			<groupId>edu.kit.aifb</groupId>
+			<artifactId>cumulusrdf-test-framework</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.kit.aifb</groupId>
+			<artifactId>cumulusrdf-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Velocity (needed for WebGUI) -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>${velocity.tools.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>struts-core</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-taglib</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-tiles</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Sesame (needed for HTTPRepository) -->
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-http-server-spring</artifactId>
+			<version>${sesame.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>logback-classic</artifactId>
+					<groupId>ch.qos.logback</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-http-protocol</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+
+		<!-- Sesame (needed for internal/external URI translation) https://github.com/joshsh/sesametools -->
+		<dependency>
+			<groupId>net.fortytwo.sesametools</groupId>
+			<artifactId>mapping-sail</artifactId>
+			<version>1.8</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.openrdf.sesame</groupId>
+					<artifactId>sesame-sail-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Misc -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<artifactId>servlet-api</artifactId>
+			<groupId>javax.servlet</groupId>
+			<version>${servlet.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+				
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>cassandra12x-hector-full-tp-index</id>
+			<properties>
+				<test.suite.storage.runner>edu.kit.aifb.cumulus.test.framework.runners.Cassandra12xRunner</test.suite.storage.runner>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>edu.kit.aifb</groupId>
+					<artifactId>cumulusrdf-pluggable-storage-cassandra12x-hector-full-tp-index</artifactId>
+					<version>${project.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cassandra-maven-plugin</artifactId>
+						<version>1.2.0-1</version>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>cassandra2x-cql-full-tp-index</id>
+			<properties>
+				<test.suite.storage.runner>edu.kit.aifb.cumulus.test.framework.runners.Cassandra2xRunner</test.suite.storage.runner>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>edu.kit.aifb</groupId>
+					<artifactId>cumulusrdf-pluggable-storage-cassandra2x-cql-full-tp-index</artifactId>
+					<version>${project.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>${embedded.tomcat.plugin.version}</version>
+				<configuration>
+					<path>/cumulus</path>
+					<port>9090</port>
+					<systemProperties>
+						<log4j.configuration>file://${project.build.directory}/tomcat/conf/log4j.xml</log4j.configuration>
+					</systemProperties>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

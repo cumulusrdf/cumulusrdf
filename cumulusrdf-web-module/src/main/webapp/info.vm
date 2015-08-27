@@ -1,0 +1,79 @@
+#set($cluster = $store.cluster)
+#set($connectionManager = $cluster.connectionManager)
+#set($monitor = $store.monitor)
+<div class="well">
+	The CumulusRDF store is a Linked Data server built on 
+	<a target="new" href="http://cassandra.apache.org/">Apache Cassandra</a>. 
+	<br/>Applications can interface with it using a <a target="new" href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> API as well as various traditional Java-Servlets, meaning that all operations are carried out over 
+	<a target="new" href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a>.
+	More information can be found on our <a target="new" href="http://code.google.com/p/cumulusrdf">CumulusRDF project page</a>.
+</div>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#context" data-toggle="tab">Context</a></li>
+	<li><a href="#schema" data-toggle="tab">Schema</a></li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="context">
+        <div class="panel panel-default">	
+            <table class="table">
+        		<tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Value</th>
+        		</tr>
+        		#foreach($attributeName in $application.attributeNames)
+        			#if(!$attributeName.contains("MergedWebXml") && !$attributeName.contains("classpath"))
+    				<tr>
+        				<td>$velocityCount</td>
+        				<td>$attributeName</td>
+        				<td><small>$application.getAttribute($attributeName)</small></td>				
+        			</tr>
+    				#end
+        		#end	
+        	</table>
+        </div>
+    </div>	
+    <div class="tab-pane" id="schema">
+    #set($classes = $store.classes)	
+    #set($dprops = $store.dataProperties)	
+    #set($oprops = $store.objectProperties)	
+    	<div class="panel panel-default">	
+            <table class="table">
+        		<tr>
+                    <th>Classes</th>
+                    <th>Datatype properties</th>
+    				<th>Object proprties</th>				
+        		</tr>
+        		<tr>
+        			<td>
+    					<small>
+    						#if($classes && !$classes.isEmpty())
+        						#foreach($clazz in $classes)
+        							$clazz<br/>
+        						#end	
+    						#end	
+    					</small>
+    				</td>	
+        			<td>
+    					<small>
+    						#if($dprops && !$dprops.isEmpty())
+        						#foreach($dprop in $dprops)
+        							$dprop<br/>
+        						#end	
+    						#end	
+    					</small>
+    				</td>	
+        			<td>
+    					<small>
+    						#if($oprops && !$oprops.isEmpty())
+        						#foreach($oprop in $oprops)
+        							$oprop<br/>
+        						#end	
+    						#end	
+    					</small>
+    				</td>					
+        		</tr>
+            </table>	
+        </div>	
+    </div>
+</div>

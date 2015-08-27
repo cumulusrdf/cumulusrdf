@@ -1,0 +1,108 @@
+--- 
+##########################################
+##	CumulusRDF configuration	##
+##########################################
+
+##### Dictionary ######
+
+# Known URIs cache size: the size of the (LRU) cache CumulusRDF will use for well known URIs, that is, URIs belonging to known vocabularies.
+known-uris-id-cache-size: 2000
+known-uris-value-cache-size: 2000
+
+# Namespaces cache size: the size of the (LRU) cache CumulusRDF will use for namespaces. 
+# Note that well-known namespaces are not involved in this cache. 
+namespaces-id-cache-size: 50000
+namespaces-value-cache-size: 25000
+
+# Local names cache size: the size of the (LRU) cache CumulusRDF will use for local names. 
+# Note that well-known URIs are not involved in this cache. 
+#localnames-id-cache-size: 10000
+#localnames-value-cache-size: 10000
+
+# Literals and blank nodes cache size: the size of the (LRU) cache CumulusRDF will use for literals and blank nodes.
+# Note that well-known URIs are not involved in this cache. 
+literals-bnodes-id-cache-size: 30000
+literals-bnodes-value-cache-size: 25000
+
+# Short and long literals are handled differently because their size. 
+# Shortly, CumulusRDF will assign variable length identifiers to "short" literals and blank nodes, while for long literals a short and fixed-length identifiers
+# will be generated. This configuration parameter determines when a literal has to be considered "short" or "long".  
+long-literals-threshold: 1000
+
+##### Index ######
+
+# Storage layout: allowed values are triple or quad
+storage-layout: "triple"
+
+# Build additional index for range queries over time and
+# numerical values, e.g., queries like: SELECT * WHERE { ?s ?p ?o FILTER(?o >= "10"^^xsd:double ) }.
+# Values: true, false.
+# Default value: false.
+storage-index-ranges: false
+
+##### Servlets ######
+
+# The base URI of resources within the data store.
+# Example: http://localhost:8080/cumulusrdf
+# Default: empty (i.e., internal base URI = external base URI).
+# internal-base-URI:
+
+# The base URI of resources as they are to be seen on the Web (exposed via, e.g., the Linked Data servlet).
+# Example: http://example.org
+# Default: empty (i.e., internal base URI = external base URI).
+# external-base-URI:
+
+#############################################################################################
+## This section contains a default configuration for all supported kind of storages.       ##
+## So at runtime, following the procedure described in Wiki, CumulusRDF will use just one  ##
+## of the following (depending on the runtime storage module you plug-in).                 ##
+#############################################################################################
+
+########################################################
+## 		Cassandra configuration		      ##
+##						      ##
+## Please see 					      ##
+##  * http://www.datastax.com/docs		      ##
+##  * http://cassandra.apache.org/		      ##
+########################################################
+
+# Cassandra nodes that CumulusRDF should connect to
+# comma-seperated list of "<host>:<port>" entries
+cassandra-hosts: "localhost:9160"
+
+# Keyspace in Cassandra cluster.
+# By using several keyspaces, multiple CumulusRDF instances
+# can store data in the same Cassandra cluster.
+# Default value: "KeyspaceCumulus".
+cassandra-keyspace: "KeyspaceCumulus"
+
+# Number of replicas across the cassandra cluster.
+# Default value: 1.
+cassandra-replication-factor: 1
+
+# Cassandra read consistency.
+# Default value: ONE.
+cassandra-read-consistency: "ONE"
+
+# Cassandra write consistency.
+# Default value: ONE.
+cassandra-write-consistency: "ONE"
+
+# Hector thrift socket timeout
+# This is an optional parameter that is set only if declared and greater than 0
+# cassandra-thrift-socket-timeout: 120000
+
+# Default value is true
+cassandra-retry-downed-hosts: true
+
+# Default value is 10
+cassandra-retry-downed-hosts-delay-in-seconds: 10
+
+# Default value is 256
+cassandra-retry-downed-hosts-queue-size: 256
+
+# Defaults to 0
+cassandra-max-wait-time-when-exhausted: 0
+
+# Load balancing policy. Optional and defaults to Hector specific implementation
+cassandra-load-balancing-policy: "me.prettyprint.cassandra.connection.LeastActiveBalancingPolicy.LeastActiveBalancingPolicy"

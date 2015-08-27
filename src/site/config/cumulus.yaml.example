@@ -1,0 +1,26 @@
+--- 
+# Values: triple, quad
+storage-layout: "triple"
+
+# Cassandra nodes that CumulusRDF should connect to
+# comma-seperated list of "<host>:<port>" entries
+cassandra-hosts: "localhost:9160"
+
+# keyspace in Cassandra cluster
+# by using several keyspaces, multiple CumulusRDF instance
+# can store data in the same Cassandra cluster
+cassandra-keyspace: "KeyspaceCumulus"
+
+# in proxy mode, CumulusRDF acts as proxy for an URI in its
+# dataset (see ProxyMode in docs)
+proxy-mode: true
+
+# for Linked Data lookups, these parameters configure how many
+# triples to return that have the requested resource as subject
+# or object position, respectively. 
+# to return all matching triples, set to -1
+triples-subject: -1
+triples-object: 5000
+
+# set the number of triples to return for /query lookups
+query-limit: -1

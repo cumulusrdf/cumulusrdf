@@ -1,0 +1,56 @@
+#if(!$store.open)
+	<div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>CumulusRDF is not open!</div>
+#else
+    #if ($request.loadOk)
+        #set($pageName = "Upload successful")
+        <div class="alert alert-success alert-dismissable">
+           <span class="glyphicon glyphicon-ok"></span> Data has been added to store. You can now try with a <a href="query">query</a>. 
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        </div>
+    #end
+    <div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> 
+    Using the CumulusRDF uploader you can upload a RDF file. All common RDF formats are supported:
+    <br/><br/>
+    <ul>
+    	<li><a target="new" href="http://www.w3.org/TR/rdf-syntax-grammar/">RDF/XML</a>: file extension rdf/rdfs</li>
+    	<li><a target="new" href="http://www.w3.org/TR/rdf-testcases/#ntriples">NTriples</a>: file extension nt</li>
+    	<li><a target="new" href="http://sw.deri.org/2008/07/n-quads/">NQuads</a>: file extension nq</li>
+    	<li>...</li>
+    </ul>
+    </div>
+    
+    <form class="form-horizontal" role="form" action="load" method="post" enctype="multipart/form-data">
+         <div class="form-group">
+            <label for="data" class="col-sm-1 control-label">Upload</label>
+            <div class="col-sm-10">
+    			<input type="file" id="data" name="data">
+    		    <p class="help-block">Browse local filesystem and select a file that contains RDF data in RDF/XML or N3 format.</p>
+    		</div>
+        </div>
+    	<div class="form-group">
+           <div class="col-sm-offset-1 col-sm-10">
+             <button type="submit" class="btn btn-success">Submit</button>
+           </div>
+    	</div>
+    </form>
+	<hr/>
+	<form class="form-horizontal" role="form" action="addOrLoad" method="post">
+         <div class="form-group">
+            <label for="query" class="col-sm-1 control-label">Add</label>
+            <div class="col-sm-10">
+    			<textarea disabled="true" type="text" class="form-control" id="query" name="query" rows="9" placeholder="Not yet enabled. This function is available at the moment only using REST services."></textarea>
+    			<input type="hidden" name="accept" value="text/html"/>
+    		</div>
+        </div>
+		<div class="form-group">
+    		<div class="col-sm-offset-1 col-sm-10">	
+                <label class="checkbox-inline">
+                  <input type="radio" name="format" value="rdf/xml"> RDF / XML
+                </label>
+                <label class="checkbox-inline">
+                  <input type="radio" name="format" value="text/plain"> N-Triples
+                </label>
+			</div>
+    	</div>
+    </form>	
+#end		

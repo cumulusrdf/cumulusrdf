@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<appender name="application_log" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${cumulus.log.dir}/cumulus.log"/>
+		<param name="Append" value="true"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p %m%n" />
+		</layout>
+	</appender>	
+	<appender name="system_log" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${cumulus.log.dir}/system.log"/>
+		<param name="Append" value="true"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p %m%n" />
+		</layout>
+	</appender>
+	<category name="me.prettyprint.cassandra" additivity="false">
+		<priority value="WARN"/>
+		<appender-ref ref="system_log"/>		
+   	</category>	
+	<category name="edu.kit.aifb" additivity="false">
+		<priority value="DEBUG"/>
+		<appender-ref ref="application_log"/>		
+   	</category>     	
+	<root>
+		<priority value="WARN"/>
+ 		<appender-ref ref="system_log"/>
+   	</root>
+</log4j:configuration>
