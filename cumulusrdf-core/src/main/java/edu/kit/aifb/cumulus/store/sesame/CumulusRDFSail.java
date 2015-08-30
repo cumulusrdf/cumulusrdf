@@ -31,8 +31,7 @@ import edu.kit.aifb.cumulus.store.sesame.model.INativeCumulusValue;
  */
 //TODO support transactions using locking (!) 
 public class CumulusRDFSail extends NotifyingSailBase {
-
-	private Store _crdf;
+	private Store _store;
 	private ITopLevelDictionary _dict;
 	private CumulusRDFValueFactory _valueFactory;
 
@@ -44,12 +43,84 @@ public class CumulusRDFSail extends NotifyingSailBase {
 	 * @param crdf the CumulusRDF {@link Store}.
 	 */
 	public CumulusRDFSail(final Store crdf) {
-		_crdf = crdf;
+		_store = crdf;
 		_valueFactory = new CumulusRDFValueFactory(this);
 	}
 
-	protected <X extends Exception> CloseableIteration<Statement, X> createRangeStatementIterator(Resource subj, URI pred, Literal lowerBound,
-			boolean lower_equals, Literal upperBound, boolean upper_equals, Literal equals, boolean reverse) throws SailException {
+	@Override
+	protected NotifyingSailConnection getConnectionInternal() throws SailException {
+		return new CumulusRDFSailConnection(this);
+	}
+
+	@Override
+	public void shutDown() throws SailException {
+		super.shutDown();
+		_store.close();
+	}
+	
+	/**
+	 * Returns the dictionary currently in use.
+	 * 
+	 * @return the dictionary currently in use.
+	 */
+	protected ITopLevelDictionary getDictionary() {
+		if (_dict == null) {
+			_dict = _store.getDictionary();
+		}
+		return _dict;
+	}
+
+	/**
+	 * Returns the store currently in use.
+	 * 
+	 * @return the store currently in use.
+	 */
+	protected Store getStore() {
+		return _store;
+	}
+
+	@Override
+	public CumulusRDFValueFactory getValueFactory() {
+		return _valueFactory;
+	}
+	
+	@Override
+	protected void initializeInternal() throws SailException {
+		try {
+			_store.open();			
+			super.initializeInternal();
+		} catch (final CumulusStoreException exception) {
+			_log.error(MessageCatalog._00025_CUMULUS_SYSTEM_INTERNAL_FAILURE, exception);
+			throw new SailException(exception);
+		}
+	}
+
+	@Override
+	protected boolean isInitialized() {
+		return _store.isOpen();
+	}
+
+	@Override
+	public boolean isWritable() throws SailException {
+		return _store.isOpen();
+	}
+
+	@Override
+	protected void shutDownInternal() throws SailException {
+		if (_store != null) {
+			_store.close();
+		}
+	}
+	
+	protected <X extends Exception> CloseableIteration<Statement, X> createRangeStatementIterator(
+			final Resource subj, 
+			final URI pred,  
+			final Literal lowerBound,
+			final boolean lower_equals, 
+			final Literal upperBound, 
+			final boolean upper_equals, 
+			final Literal equals, 
+			final boolean reverse) throws SailException {
 
 		if (equals != null) {
 			return createStatementIterator(subj, pred, equals);
@@ -73,12 +144,17 @@ public class CumulusRDFSail extends NotifyingSailBase {
 			return new EmptyIteration<Statement, X>();
 		}
 
-		URI datatype_lower = lowerBound == null ? null : lowerBound.getDatatype(), datatype_upper = upperBound == null ? null : upperBound
-				.getDatatype(), datatype = null;
+		URI datatype_lower = 
+				lowerBound == null 
+						? null 
+						: lowerBound.getDatatype(), 
+				datatype_upper = upperBound == null 
+						? null 
+						: upperBound.getDatatype(), 
+				datatype = null;
 
 		// both datatypes are set
 		if ((upperBound != null) && (lowerBound != null)) {
-
 			if (!datatype_lower.equals(datatype_upper)) {
 				_log.warning(MessageCatalog._00072_DATATYPE_BOUNDS_MISMATCH, datatype_lower, datatype_upper);
 				return new EmptyIteration<Statement, X>();
@@ -87,12 +163,13 @@ public class CumulusRDFSail extends NotifyingSailBase {
 			}
 		} else {
 			// only one or no datatype is set
-
 			if ((datatype_lower == null) && (datatype_upper == null)) {
 				_log.warning(MessageCatalog._00073_DATATYPE_BOUNDS_NULL);
 				return new EmptyIteration<Statement, X>();
 			} else {
-				datatype = datatype_lower == null ? datatype_upper : datatype_lower;
+				datatype = datatype_lower == null 
+						? datatype_upper 
+						: datatype_lower;
 			}
 		}
 
@@ -102,10 +179,10 @@ public class CumulusRDFSail extends NotifyingSailBase {
 			Literal upper_lit = upperBound;
 
 			if (NUMERIC_RANGETYPES_AS_STRING.contains(datatype.stringValue())) {
-				return new CumulusRDFIterator<X>(_crdf.rangeAsIDs(nx, lower_lit, lower_equals, upper_lit, upper_equals, reverse, Integer.MAX_VALUE),
+				return new CumulusRDFIterator<X>(_store.rangeAsIDs(nx, lower_lit, lower_equals, upper_lit, upper_equals, reverse, Integer.MAX_VALUE),
 						this);
 			} else if (DATETIME_RANGETYPES_AS_STRING.contains(datatype.stringValue())) {
-				return new CumulusRDFIterator<X>(_crdf.rangeDateTimeAsIDs(nx, lower_lit, lower_equals, upper_lit, upper_equals, reverse,
+				return new CumulusRDFIterator<X>(_store.rangeDateTimeAsIDs(nx, lower_lit, lower_equals, upper_lit, upper_equals, reverse,
 						Integer.MAX_VALUE), this);
 			}
 
@@ -225,7 +302,7 @@ public class CumulusRDFSail extends NotifyingSailBase {
 			}
 
 
-			return new CumulusRDFIterator<X>(_crdf.queryWithIDs(ids), this);
+			return new CumulusRDFIterator<X>(_store.queryWithIDs(ids), this);
 		} catch (final DataAccessLayerException exception) {
 			_log.error(MessageCatalog._00093_DATA_ACCESS_LAYER_FAILURE, exception);
 			return new EmptyIteration<Statement, X>();
@@ -233,68 +310,5 @@ public class CumulusRDFSail extends NotifyingSailBase {
 			_log.error(MessageCatalog._00026_NWS_SYSTEM_INTERNAL_FAILURE, exception);
 			return new EmptyIteration<Statement, X>();
 		}			
-	}
-
-	@Override
-	protected NotifyingSailConnection getConnectionInternal() throws SailException {
-		return new CumulusRDFSailConnection(this);
-	}
-
-	/**
-	 * Returns the dictionary currently in use.
-	 * 
-	 * @return the dictionary currently in use.
-	 */
-	protected ITopLevelDictionary getDictionary() {
-
-		if (_dict == null) {
-			_dict = _crdf.getDictionary();
-		}
-
-		return _dict;
-	}
-
-	/**
-	 * Returns the store currently in use.
-	 * 
-	 * @return the store currently in use.
-	 */
-	protected Store getStore() {
-		return _crdf;
-	}
-
-	@Override
-	public CumulusRDFValueFactory getValueFactory() {
-		return _valueFactory;
-	}
-	
-	@Override
-	protected void initializeInternal() throws SailException {
-
-		try {
-			_crdf.open();			
-		} catch (CumulusStoreException e) {
-			e.printStackTrace();
-		}
-		
-		super.initializeInternal();
-	}
-
-	@Override
-	protected boolean isInitialized() {
-		return _crdf.isOpen();
-	}
-
-	@Override
-	public boolean isWritable() throws SailException {
-		return _crdf.isOpen();
-	}
-
-	@Override
-	protected void shutDownInternal() throws SailException {
-
-		if (_crdf != null) {
-			_crdf.close();
-		}
-	}
+	}	
 }
