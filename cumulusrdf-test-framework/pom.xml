@@ -15,16 +15,7 @@
 		<dependency>
 			<groupId>io.teknek</groupId>
 			<artifactId>farsandra</artifactId>
-			<version>0.0.5-CumulusRDF-SNAPSHOT</version>
+			<version>0.0.7</version>
 		</dependency>
 	</dependencies>
-	
-	<repositories>
-		<repository>
-			<id>cumulusrdf-test-framework-local-maven</id>
-			<name>cumulusrdf-test-framework-local-maven</name>
-			<url>file:${project.basedir}/lib</url>
-		</repository>
-	</repositories>
-	
 </project>
