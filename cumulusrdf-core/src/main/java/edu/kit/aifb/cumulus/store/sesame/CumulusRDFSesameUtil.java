@@ -15,20 +15,17 @@ public abstract class CumulusRDFSesameUtil {
 		return SESAME_VALUE_FACTORY.createStatement((Resource) next[0], (URI) next[1], next[2], (Resource) next[3]);
 	}
 
+	public static Statement valuesToTripleStatement(final Value[] next) {
+		return SESAME_VALUE_FACTORY.createStatement((Resource) next[0], (URI) next[1], next[2]);
+	}
+	
 	public static Statement valuesToStatement(final Value[] next) {
-
 		if (next == null || next.length < 3 || next.length > 4) {
 			return null;
 		}
 
-		if (next.length == 3) {
-			return valuesToTripleStatement(next);
-		} else {
-			return valuesToQuadStatement(next);
-		}
-	}
-
-	public static Statement valuesToTripleStatement(final Value[] next) {
-		return SESAME_VALUE_FACTORY.createStatement((Resource) next[0], (URI) next[1], next[2]);
-	}
+		return (next.length == 3)
+			? valuesToTripleStatement(next)
+			: valuesToQuadStatement(next);
+	}	
 }

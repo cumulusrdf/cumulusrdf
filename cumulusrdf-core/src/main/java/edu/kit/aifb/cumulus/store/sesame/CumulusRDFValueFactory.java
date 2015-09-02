@@ -12,6 +12,7 @@ import org.openrdf.model.impl.ContextStatementImpl;
 import org.openrdf.model.impl.StatementImpl;
 import org.openrdf.model.impl.ValueFactoryBase;
 
+import edu.kit.aifb.cumulus.framework.domain.dictionary.ITopLevelDictionary;
 import edu.kit.aifb.cumulus.store.sesame.model.INativeCumulusValue;
 import edu.kit.aifb.cumulus.store.sesame.model.NativeCumulusBNode;
 import edu.kit.aifb.cumulus.store.sesame.model.NativeCumulusLiteral;
@@ -25,6 +26,8 @@ import edu.kit.aifb.cumulus.store.sesame.model.NativeCumulusURI;
  */
 public class CumulusRDFValueFactory extends ValueFactoryBase {
 
+	private final ITopLevelDictionary dictionary;
+	
 	/**
 	 * Creates a CumulusRDF native value from a given {@link Value}.
 	 * 
@@ -32,15 +35,12 @@ public class CumulusRDFValueFactory extends ValueFactoryBase {
 	 * @return a CumulusRDF native value.
 	 */
 	public static Value makeNativeValue(final Value value) {
-
 		if (value == null || value instanceof INativeCumulusValue) {
 			return value;
 		}
 
 		if (value instanceof URI) {
-
 			return new NativeCumulusURI(value.stringValue());
-			
 		} else if (value instanceof Literal) {
 			
 			final Literal lit = (Literal) value;
@@ -62,10 +62,13 @@ public class CumulusRDFValueFactory extends ValueFactoryBase {
 		return value;
 	}
 
-	private CumulusRDFSail _store;
-
-	public CumulusRDFValueFactory(final CumulusRDFSail store) {
-		_store = store;
+	/**
+	 * Builds a new value factory with the given store.
+	 * 
+	 * @param dictionary the {@link ITopLevelDictionary} currently in use.
+	 */
+	public CumulusRDFValueFactory(final ITopLevelDictionary dictionary) {
+		this.dictionary = dictionary;
 	}
 
 	public BNode createBNode(final BNode bNode) {
@@ -92,78 +95,45 @@ public class CumulusRDFValueFactory extends ValueFactoryBase {
 		return new NativeCumulusLiteral(label, datatype);
 	}
 
-	public Value[] createNodes(Statement stmt) {
-
-		Value[] values = new Value[stmt.getContext() == null ? 3 : 4];
-		values[0] = stmt.getSubject();
-		values[1] = stmt.getPredicate();
-		values[2] = stmt.getObject();
-
-		if (stmt.getContext() != null) {
-			values[3] = stmt.getContext();
-		}
-
-		return values;
-	}
-
-	public Value[] createNodes(Value... vs) {
+	public Value[] createNodes(final Value ... vs) {
 		return vs;
 	}
 
-	public Statement createStatement(byte[][] nodes) throws IllegalArgumentException {
-
-		if (nodes.length == 3) {
-
-			try {
-				return createStatement((Resource) createValue(nodes[0], false), (URI) createValue(nodes[1], true), createValue(nodes[2], false));
-			} catch (ClassCastException e) {
-				throw new IllegalArgumentException("node had a wrong type", e);
-			}
-		}
-
-		if (nodes.length == 4) {
-
-			try {
-				return createStatement((Resource) createValue(nodes[0], false), (URI) createValue(nodes[1], true), createValue(nodes[2], false),
-						(Resource) createValue(nodes[3], false));
-			} catch (ClassCastException e) {
-				throw new IllegalArgumentException("node had a wrong type", e);
-			}
-		}
-
-		throw new IllegalArgumentException("argument should have length 3 or 4");
+	public Statement createStatement(final byte[][] nodes) {
+		return (nodes.length == 3) 
+				? createStatement((Resource) createValue(nodes[0], false), (URI) createValue(nodes[1], true), createValue(nodes[2], false))
+				: createStatement((Resource) createValue(nodes[0], false), (URI) createValue(nodes[1], true), createValue(nodes[2], false), (Resource) createValue(nodes[3], false));
 	}
 
 	@Override
-	public Statement createStatement(Resource subject, URI predicate, Value object) {
+	public Statement createStatement(final Resource subject, final URI predicate, final Value object) {
 		return new StatementImpl(subject, predicate, object);
 	}
 
 	@Override
-	public Statement createStatement(Resource subject, URI predicate, Value object, Resource context) {
+	public Statement createStatement(final Resource subject, final URI predicate, final Value object, final Resource context) {
 		return new ContextStatementImpl(subject, predicate, object, context);
 	}
 
 	@Override
-	public URI createURI(String uri) {
+	public URI createURI(final String uri) {
 		return new NativeCumulusURI(uri);
 	}
 
 	@Override
-	public URI createURI(String namespace, String localName) {
+	public URI createURI(final String namespace, final String localName) {
 		return createURI(namespace + localName);
 	}
 
-	public Value createValue(byte[] id, boolean p) throws IllegalArgumentException {
-
-		if (_store.getDictionary().isBNode(id)) {
-			return new NativeCumulusBNode(id, _store.getDictionary());
-		} else if (_store.getDictionary().isLiteral(id)) {
-			return new NativeCumulusLiteral(id, _store.getDictionary());
-		} else if (_store.getDictionary().isResource(id)) {
-			return new NativeCumulusURI(id, _store.getDictionary(), p);
+	Value createValue(final byte[] id, final boolean isPredicate) {
+		if (dictionary.isBNode(id)) {
+			return new NativeCumulusBNode(id, dictionary);
+		} else if (dictionary.isLiteral(id)) {
+			return new NativeCumulusLiteral(id, dictionary);
+		} else if (dictionary.isResource(id)) {
+			return new NativeCumulusURI(id, dictionary, isPredicate);
 		} else {
-			throw new IllegalArgumentException("could not create sesame value from node ID " + Arrays.toString(id));
+			throw new IllegalArgumentException("Could not create sesame value from node ID " + Arrays.toString(id));
 		}
 	}
 }

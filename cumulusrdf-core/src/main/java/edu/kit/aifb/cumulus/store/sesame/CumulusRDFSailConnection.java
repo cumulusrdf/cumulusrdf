@@ -1,8 +1,12 @@
 package edu.kit.aifb.cumulus.store.sesame;
 
+import static edu.kit.aifb.cumulus.framework.Environment.DATETIME_RANGETYPES_AS_STRING;
+import static edu.kit.aifb.cumulus.framework.Environment.NUMERIC_RANGETYPES_AS_STRING;
 import info.aduna.iteration.CloseableIteration;
 import info.aduna.iteration.CloseableIterationBase;
+import info.aduna.iteration.EmptyIteration;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
@@ -40,20 +44,24 @@ import org.slf4j.LoggerFactory;
 
 import edu.kit.aifb.cumulus.framework.datasource.DataAccessLayerException;
 import edu.kit.aifb.cumulus.log.Log;
+import edu.kit.aifb.cumulus.log.MessageCatalog;
 import edu.kit.aifb.cumulus.store.CumulusStoreException;
 import edu.kit.aifb.cumulus.store.PersistentMap;
 import edu.kit.aifb.cumulus.store.QuadStore;
 import edu.kit.aifb.cumulus.store.Store;
 import edu.kit.aifb.cumulus.store.sel.AbstractSelectivityEstimator;
+import edu.kit.aifb.cumulus.store.sesame.model.INativeCumulusValue;
 
 /**
  * A SailConnection that connects to a CumulusRDFSail.
  * 
  * @author Andreas Wagner
+ * @author Andrea Gazzarini
  * @since 1.0
  */
 public class CumulusRDFSailConnection extends NotifyingSailConnectionBase {
-
+	private final static Log LOGGER = new Log(LoggerFactory.getLogger(CumulusRDFSailConnection.class));
+	
 	protected class CumulusRDFTripleSource implements TripleSource {
 		@Override
 		public CloseableIteration<? extends Statement, QueryEvaluationException> getStatements(
@@ -61,31 +69,36 @@ public class CumulusRDFSailConnection extends NotifyingSailConnectionBase {
 				final URI pred,
 				final Value obj,
 				final Resource... contexts) throws QueryEvaluationException {
-
 			try {
-
 				if (contexts != null && contexts.length > 0) {
 					@SuppressWarnings("unchecked")
-					CloseableIteration<Statement, QueryEvaluationException>[] iterations = new CloseableIteration[contexts.length];
-
+					final CloseableIteration<Statement, QueryEvaluationException>[] iterations = new CloseableIteration[contexts.length];
+					
 					for (int i = 0; i < contexts.length; i++) {
-						iterations[i] = _sail.createStatementIterator(subj, pred, obj, contexts[i]);
+						iterations[i] = newStatementIterator(subj, pred, obj, contexts[i]);
 					}
 
 					return new CloseableMultiIterator<Statement, QueryEvaluationException>(iterations);
 				} else {
-					return _sail.createStatementIterator(subj, pred, obj, contexts);
+					return newStatementIterator(subj, pred, obj, contexts);
 				}
-			} catch (SailException e) {
-				e.printStackTrace();
-				throw new QueryEvaluationException(e);
+			} catch (final SailException exception) {
+				LOGGER.error(MessageCatalog._00025_CUMULUS_SYSTEM_INTERNAL_FAILURE, exception);
+				throw new QueryEvaluationException(exception);
 			}
 		}
 
-		public CloseableIteration<? extends Statement, QueryEvaluationException> getRangeStatements(Resource subj, URI pred, Literal lowerBound,
-				boolean lower_equals, Literal upperBound, boolean upper_equals, Literal equals, boolean reverse) throws QueryEvaluationException {
+		public CloseableIteration<? extends Statement, QueryEvaluationException> getRangeStatements(
+				final Resource subj, 
+				final URI pred, 
+				final Literal lowerBound,
+				final boolean lower_equals, 
+				final Literal upperBound, 
+				final boolean upper_equals, 
+				final Literal equals, 
+				final boolean reverse) throws QueryEvaluationException {
 			try {
-				return _sail.createRangeStatementIterator(subj, pred, lowerBound, lower_equals, upperBound, upper_equals, equals, reverse);
+				return createRangeStatementIterator(subj, pred, lowerBound, lower_equals, upperBound, upper_equals, equals, reverse);
 			} catch (SailException e) {
 				e.printStackTrace();
 				throw new QueryEvaluationException(e);
@@ -190,12 +203,12 @@ public class CumulusRDFSailConnection extends NotifyingSailConnectionBase {
 			CloseableIteration<Statement, SailException>[] iterations = new CloseableIteration[contexts.length];
 
 			for (int i = 0; i < contexts.length; i++) {
-				iterations[i] = _sail.createStatementIterator(subj, pred, obj, contexts[i]);
+				iterations[i] = newStatementIterator(subj, pred, obj, contexts[i]);
 			}
 
 			return new CloseableMultiIterator<Statement, SailException>(iterations);
 		} else {
-			return _sail.createStatementIterator(subj, pred, obj, contexts);
+			return newStatementIterator(subj, pred, obj, contexts);
 		}
 	}
 
@@ -255,7 +268,7 @@ public class CumulusRDFSailConnection extends NotifyingSailConnectionBase {
 				}
 
 				for (int i = 0; i < contexts.length; i++) {
-					_crdf.removeData(_factory.createNodes(subj, pred, obj, contexts[i]));
+					_crdf.removeData(_factory.createNodes(subj, pred, obj, contexts[0]));
 				}
 			} else {
 				_crdf.removeData(_factory.createNodes(subj, pred, obj));
@@ -270,18 +283,15 @@ public class CumulusRDFSailConnection extends NotifyingSailConnectionBase {
 	protected void clearInternal(final Resource... contexts) throws SailException {
 
 		if (contexts == null || contexts.length == 0) {
-			
 			_crdf.clear();
-			
 		} else {
-			
-			for (Resource context : contexts) {
+			Arrays.stream(contexts).parallel().forEach(context -> {
 				try {
-					((QuadStore) _crdf).removeData(new Value[] { null, null, null, context });
-				} catch (CumulusStoreException e) {
-					e.printStackTrace();
+					((QuadStore) _crdf).removeData(new Value[] { null, null, null, context});
+				} catch (final Exception exception) {
+					LOGGER.error(MessageCatalog._00025_CUMULUS_SYSTEM_INTERNAL_FAILURE, exception);
 				}
-			}
+			});
 		}
 	}
 
@@ -369,4 +379,114 @@ public class CumulusRDFSailConnection extends NotifyingSailConnectionBase {
 			throw new SailException(exception);
 		}
 	}
+	
+	protected <X extends Exception> CloseableIteration<Statement, X> newStatementIterator(
+			final Resource subj, 
+			final URI pred, 
+			final Value obj, 
+			final Resource... contexts) throws SailException {
+		try {
+			return new CumulusRDFIterator<X>(
+					_crdf.queryWithIDs(
+						(contexts == null) || (contexts.length == 0)
+							? new byte[][]{id(subj),id(pred),id(obj)}
+							: new byte[][]{id(subj),id(pred),id(obj), id(contexts[0])}), _sail);
+		} catch (final DataAccessLayerException exception) {
+			_log.error(MessageCatalog._00093_DATA_ACCESS_LAYER_FAILURE, exception);
+			return new EmptyIteration<Statement, X>();
+		} catch (final Exception exception) {
+			_log.error(MessageCatalog._00026_NWS_SYSTEM_INTERNAL_FAILURE, exception);
+			return new EmptyIteration<Statement, X>();
+		}			
+	}	
+	
+	protected <X extends Exception> CloseableIteration<Statement, X> createRangeStatementIterator(
+			final Resource subj, 
+			final URI pred,  
+			final Literal lowerBound,
+			final boolean lower_equals, 
+			final Literal upperBound, 
+			final boolean upper_equals, 
+			final Literal equals, 
+			final boolean reverse) throws SailException {
+
+		if (equals != null) {
+			return newStatementIterator(subj, pred, equals);
+		}
+
+		final Value[] nx = {subj, pred};
+		
+		// at least predicate must be set!
+		if ((nx[0] == null) && (nx[1] == null)) {
+			return new EmptyIteration<Statement, X>();
+		}
+
+		final URI datatype_lower = lowerBound == null ? null : lowerBound.getDatatype();
+		final URI datatype_upper = upperBound == null ? null : upperBound.getDatatype();
+		URI datatype = null;
+
+		// both datatypes are set
+		if ((upperBound != null) && (lowerBound != null)) {
+			if (!datatype_lower.equals(datatype_upper)) {
+				_log.warning(MessageCatalog._00072_DATATYPE_BOUNDS_MISMATCH, datatype_lower, datatype_upper);
+				return new EmptyIteration<Statement, X>();
+			} else {
+				datatype = datatype_lower;
+			}
+		} else {
+			// only one or no datatype is set
+			if ((datatype_lower == null) && (datatype_upper == null)) {
+				_log.warning(MessageCatalog._00073_DATATYPE_BOUNDS_NULL);
+				return new EmptyIteration<Statement, X>();
+			} else {
+				datatype = datatype_lower == null 
+						? datatype_upper 
+						: datatype_lower;
+			}
+		}
+
+		try {
+
+			final Literal lower_lit = lowerBound;
+			final Literal upper_lit = upperBound;
+
+			if (NUMERIC_RANGETYPES_AS_STRING.contains(datatype.stringValue())) {
+				return new CumulusRDFIterator<X>(_crdf.rangeAsIDs(nx, lower_lit, lower_equals, upper_lit, upper_equals, reverse, Integer.MAX_VALUE), _sail);
+			} else if (DATETIME_RANGETYPES_AS_STRING.contains(datatype.stringValue())) {
+				return new CumulusRDFIterator<X>(
+						_crdf.rangeDateTimeAsIDs(
+								nx, lower_lit, lower_equals, upper_lit, upper_equals, reverse,
+						Integer.MAX_VALUE), _sail);
+			}
+
+		} catch (final ClassCastException exception) {
+			_log.error(MessageCatalog._00074_BOUND_NOT_LITERAL, exception);
+		} catch (final DataAccessLayerException exception) {			
+			_log.error(MessageCatalog._00093_DATA_ACCESS_LAYER_FAILURE, exception);
+		}
+
+		return new EmptyIteration<Statement, X>();
+	}	
+	
+	/**
+	 * Returns the identifier associated with the given value.
+	 * 
+	 * @param value the {@link Value}.
+	 * @return the identifier associated with the given value.
+	 * @throws DataAccessLayerException in case of Data access failure.
+	 */
+	byte [] id(final Value value) throws DataAccessLayerException  {
+		if (value == null) {
+			return null;
+		}
+		
+		final INativeCumulusValue nativeValue = (INativeCumulusValue) value;
+		if (nativeValue.hasInternalID()) {
+			return nativeValue.getInternalID();
+		} else {
+			final byte [] id = _crdf.getDictionary().getID(value, false);
+			nativeValue.setInternalID(id);
+			return id;
+		}
+	}	
 }

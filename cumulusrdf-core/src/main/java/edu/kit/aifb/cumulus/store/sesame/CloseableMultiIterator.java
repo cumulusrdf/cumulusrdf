@@ -1,5 +1,14 @@
 package edu.kit.aifb.cumulus.store.sesame;
 
+import java.util.Arrays;
+
+
+
+
+import org.slf4j.LoggerFactory;
+
+import edu.kit.aifb.cumulus.log.Log;
+import edu.kit.aifb.cumulus.log.MessageCatalog;
 import info.aduna.iteration.CloseableIteration;
 import info.aduna.iteration.LookAheadIteration;
 
@@ -13,16 +22,18 @@ import info.aduna.iteration.LookAheadIteration;
  *            element.
  */
 public class CloseableMultiIterator<E, X extends Exception> extends LookAheadIteration<E, X> {
+	private final static Log LOGGER = new Log(LoggerFactory.getLogger(LookAheadIteration.class));
+
 	private final CloseableIteration<E, X>[] _iterators;
-	private int _index = 0;
+	private int _index;
 
 	/**
-	 * Creates a new closeable iteration that concats the goven closeable iterations.
+	 * Creates a new closeable iteration that concats the given closeable iterations.
 	 * 
 	 * @param iterators the iterators to concat.
 	 */
+	@SafeVarargs
 	public CloseableMultiIterator(final CloseableIteration<E, X>... iterators) {
-		// This assignment is safe, since nothing is every assigned to iterators. 
 		_iterators = iterators;
 	}
 
@@ -37,7 +48,7 @@ public class CloseableMultiIterator<E, X extends Exception> extends LookAheadIte
 			return _iterators[_index].next();
 		}
 	}
-
+	
 	/**
 	 * Closes every single iterator that was passed in the constructor.
 	 * 
@@ -46,9 +57,12 @@ public class CloseableMultiIterator<E, X extends Exception> extends LookAheadIte
 	@Override
 	protected void handleClose() throws X {
 		super.handleClose();
-
-		for (final CloseableIteration<E, X> iterator : _iterators) {
-			iterator.close();
-		}
+		Arrays.stream(_iterators).forEach(iterator -> {
+			try {
+				iterator.close();
+			} catch (final Exception exception) {
+				LOGGER.error(MessageCatalog._00025_CUMULUS_SYSTEM_INTERNAL_FAILURE, exception);
+			}
+		});
 	}
 }

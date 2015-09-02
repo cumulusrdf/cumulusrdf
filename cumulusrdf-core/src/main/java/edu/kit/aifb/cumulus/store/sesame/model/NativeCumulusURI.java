@@ -22,7 +22,7 @@ public class NativeCumulusURI extends URIImpl implements INativeCumulusResource 
 	private final Log _log = new Log(LoggerFactory.getLogger(getClass()));
 
 	private volatile byte[] _internalID = INativeCumulusValue.UNKNOWN_ID;
-	private ITopLevelDictionary _dict;
+	private ITopLevelDictionary _dictionary;
 	private int _hash;
 	private boolean _has_data, _p;
 
@@ -31,16 +31,13 @@ public class NativeCumulusURI extends URIImpl implements INativeCumulusResource 
 	 * 
 	 * @param internalID the internal identifier.
 	 * @param dict the dictionary.
-	 * @param p the predicate flag.
+	 * @param isPredicate the predicate flag.
 	 */
-	public NativeCumulusURI(final byte[] internalID, final ITopLevelDictionary dict, final boolean p) {
-
-		super();
-
+	public NativeCumulusURI(final byte[] internalID, final ITopLevelDictionary dictionary, final boolean isPredicate) {
 		_internalID = internalID;
 		_hash = Arrays.hashCode(internalID);
-		_dict = dict;
-		_p = p;
+		_dictionary = dictionary;
+		_p = isPredicate;
 		_has_data = false;
 	}
 
@@ -50,26 +47,21 @@ public class NativeCumulusURI extends URIImpl implements INativeCumulusResource 
 	 * @param uri the string representation of the URI.
 	 */
 	public NativeCumulusURI(final String uri) {
-
-		super(uri);
-
 		_hash = super.hashCode();
 		_has_data = true;
 	}
 
 	@Override
 	public boolean equals(final Object object) {
-
 		if (this == object) {
 			return true;
 		}
 
-		if (!(object instanceof URI)) {
+		if (!(object instanceof NativeCumulusURI)) {
 			return false;
 		}
 
 		if (object instanceof NativeCumulusURI && !Arrays.equals(_internalID, INativeCumulusValue.UNKNOWN_ID)) {
-
 			NativeCumulusURI other = (NativeCumulusURI) object;
 
 			if (!Arrays.equals(other._internalID, INativeCumulusValue.UNKNOWN_ID)) {
@@ -124,17 +116,14 @@ public class NativeCumulusURI extends URIImpl implements INativeCumulusResource 
 	 * Loads data associated with this URI.
 	 */
 	private synchronized void load() {
-
 		if (_has_data) {
 			return;
 		}
 
 		// load data ...
 		try {
-
-			URI uri = (URI) _dict.getValue(_internalID, _p);
+			final URI uri = (URI) _dictionary.getValue(_internalID, _p);
 			super.setURIString(uri.stringValue());
-
 		} catch (final Exception exception) {
 			_log.error(MessageCatalog._00075_COULDNT_LOAD_NODE, exception, Arrays.toString(_internalID));
 			super.setURIString("http://cumulus/internal/" + Arrays.toString(_internalID));

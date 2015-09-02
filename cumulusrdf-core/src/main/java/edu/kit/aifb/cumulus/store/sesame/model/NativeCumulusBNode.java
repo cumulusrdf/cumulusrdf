@@ -49,10 +49,8 @@ public class NativeCumulusBNode extends BNodeImpl implements INativeCumulusResou
 	 * @param id the blank node identifier.
 	 */
 	public NativeCumulusBNode(final String id) {
-
 		super(id);
-
-		_hash = super.hashCode();
+		_hash = hashCode();
 		_has_data = true;
 	}
 

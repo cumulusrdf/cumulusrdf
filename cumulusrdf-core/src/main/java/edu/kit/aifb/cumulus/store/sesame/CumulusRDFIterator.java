@@ -13,9 +13,8 @@ import org.openrdf.model.Statement;
  * @param <X> the exception kind that will be eventually raised during the iteration.
  */
 public class CumulusRDFIterator<X extends Exception> extends LookAheadIteration<Statement, X> {
-	
-	private Iterator<byte[][]> _it;
-	private CumulusRDFSail _sail;
+	private final Iterator<byte[][]> _iterator;
+	private final CumulusRDFValueFactory _valueFactory;
 
 	/**
 	 * Builds a new iterator with the given data.
@@ -24,15 +23,14 @@ public class CumulusRDFIterator<X extends Exception> extends LookAheadIteration<
 	 * @param sail the CumulusRDF Sail.
 	 */
 	public CumulusRDFIterator(final Iterator<byte[][]> res, final CumulusRDFSail sail) {
-		_it = res;
-		_sail = sail;
+		_iterator = res;
+		_valueFactory = sail.getValueFactory();
 	}
 
 	@Override
 	protected Statement getNextElement() throws X {
-		if (_it.hasNext()) {
-			return _sail.getValueFactory().createStatement(_it.next());
-		}
-		return null;
+		return (_iterator.hasNext()) 
+			? _valueFactory.createStatement(_iterator.next())
+			: null;
 	}
 }

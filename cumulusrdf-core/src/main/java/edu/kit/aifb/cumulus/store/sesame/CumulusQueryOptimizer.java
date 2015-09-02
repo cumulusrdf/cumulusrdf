@@ -1,5 +1,5 @@
 package edu.kit.aifb.cumulus.store.sesame;
-
+import static edu.kit.aifb.cumulus.store.sesame.CumulusRDFValueFactory.makeNativeValue;
 import static edu.kit.aifb.cumulus.framework.Environment.DATETIME_RANGETYPES_AS_STRING;
 import static edu.kit.aifb.cumulus.framework.Environment.NUMERIC_RANGETYPES_AS_STRING;
 
@@ -27,7 +27,6 @@ import org.openrdf.query.algebra.evaluation.QueryOptimizer;
 import org.openrdf.query.algebra.helpers.QueryModelVisitorBase;
 
 public class CumulusQueryOptimizer implements QueryOptimizer {
-
 	private final boolean _ranges_indexed;
 
 	/**
@@ -41,7 +40,6 @@ public class CumulusQueryOptimizer implements QueryOptimizer {
 
 	@Override
 	public void optimize(final TupleExpr tupleExpr, final Dataset dataset, final BindingSet bindings) {
-
 		// use native support for range queries
 		if (_ranges_indexed) {
 			tupleExpr.visit(new RangeQueryVisitor(tupleExpr));
@@ -53,29 +51,14 @@ public class CumulusQueryOptimizer implements QueryOptimizer {
 	}
 
 	protected static class CumulusNativeModelVisitor extends QueryModelVisitorBase<RuntimeException> {
-
 		@Override
-		public void meet(final StatementPattern node) {
-
-			Value subject_value = node.getSubjectVar().getValue();
-			Value predicate_value = node.getPredicateVar().getValue();
-			Value object_value = node.getObjectVar().getValue();
-			Value context_value = node.getContextVar() != null ? node.getContextVar().getValue() : null;
-
-			if (subject_value != null) {
-				node.getSubjectVar().setValue(CumulusRDFValueFactory.makeNativeValue(subject_value));
-			}
-
-			if (predicate_value != null) {
-				node.getPredicateVar().setValue(CumulusRDFValueFactory.makeNativeValue(predicate_value));
-			}
-
-			if (object_value != null) {
-				node.getObjectVar().setValue(CumulusRDFValueFactory.makeNativeValue(object_value));
-			}
-
-			if (context_value != null) {
-				node.getObjectVar().setValue(CumulusRDFValueFactory.makeNativeValue(context_value));
+		public void meet(final StatementPattern pattern) {
+			pattern.getSubjectVar().setValue(makeNativeValue(pattern.getSubjectVar().getValue()));
+			pattern.getPredicateVar().setValue(makeNativeValue(pattern.getPredicateVar().getValue()));
+			pattern.getObjectVar().setValue(makeNativeValue(pattern.getObjectVar().getValue()));
+			
+			if (pattern.getContextVar() != null) {
+				pattern.getContextVar().setValue(makeNativeValue(pattern.getContextVar().getValue()));
 			}
 		}
 	}
@@ -99,7 +82,6 @@ public class CumulusQueryOptimizer implements QueryOptimizer {
 			protected Map<Var, Boolean> _variables;
 
 			public OrderByModifier(final TupleExpr tupleExpr, final Order order) {
-
 				_tupleExpr = tupleExpr;
 				_order = order;
 				_variables = new HashMap<Var, Boolean>();
@@ -108,7 +90,6 @@ public class CumulusQueryOptimizer implements QueryOptimizer {
 				Iterator<OrderElem> iter = elems.iterator();
 
 				while (iter.hasNext()) {
-
 					OrderElem ele = iter.next();
 					boolean ascending = ele.isAscending();
 					ValueExpr ex = ele.getExpr();
@@ -131,7 +112,6 @@ public class CumulusQueryOptimizer implements QueryOptimizer {
 	}
 
 	protected static class RangeQueryVisitor extends QueryModelVisitorBase<RuntimeException> {
-
 		protected final TupleExpr _tupleExpr;
 
 		/**
@@ -145,7 +125,6 @@ public class CumulusQueryOptimizer implements QueryOptimizer {
 
 		@Override
 		public void meet(final Filter filter) {
-
 			super.meet(filter);
 			ValueExpr condition = filter.getCondition();
 
