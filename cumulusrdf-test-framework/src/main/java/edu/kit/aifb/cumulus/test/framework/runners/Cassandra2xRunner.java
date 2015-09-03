@@ -10,6 +10,6 @@ public class Cassandra2xRunner extends CassandraRunner {
 
 	@Override
 	protected String getCassandraVersion() {
-		return "2.0.8";
+		return "2.0.3";
 	}
 }

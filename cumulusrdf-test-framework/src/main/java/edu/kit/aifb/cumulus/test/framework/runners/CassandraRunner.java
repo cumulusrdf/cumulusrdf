@@ -3,6 +3,7 @@ package edu.kit.aifb.cumulus.test.framework.runners;
 import io.teknek.farsandra.Farsandra;
 import io.teknek.farsandra.LineHandler;
 
+import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -20,17 +21,21 @@ public abstract class CassandraRunner implements StorageRunner {
 		
 		final String version = getCassandraVersion();
 
-		_cassandra = new Farsandra();
-		_cassandra.withVersion(version);
-		_cassandra.withCleanInstanceOnStart(true);
-		_cassandra.withInstanceName("target/cassandra-" + version);
+		_cassandra = new Farsandra()
+			.withVersion(version)
+			.withCleanInstanceOnStart(true)
+			.withInstanceName("target/cassandra-" + version)
+			.withCleanInstanceOnStart(true)
+			.withCreateConfigurationFiles(true)
+			.withHost("localhost")
+			.withSeeds(Arrays.asList("localhost"));		
 		
 		final CountDownLatch started = new CountDownLatch(1);
-		
+
 		_cassandra.getManager().addOutLineHandler(new LineHandler() {
 			@Override
 			public void handleLine(final String line) {
-				// System.out.println(line);
+				System.out.println(line);
 				if (line.contains("Listening for thrift clients...")) {
 					started.countDown();
 				}
