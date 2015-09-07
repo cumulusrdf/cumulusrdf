@@ -35,7 +35,6 @@ public abstract class CassandraRunner implements StorageRunner {
 		_cassandra.getManager().addOutLineHandler(new LineHandler() {
 			@Override
 			public void handleLine(final String line) {
-				System.out.println(line);
 				if (line.contains("Listening for thrift clients...")) {
 					started.countDown();
 				}
@@ -60,12 +59,9 @@ public abstract class CassandraRunner implements StorageRunner {
 	public void stop() {
 		try {
 			_cassandra.getManager().destroyAndWaitForShutdown(30);
-		} catch (InterruptedException e) {
-			// TODO including cumulusrdf-core leads to a cyclic dependency. So
-			// how do we manage logging?
-			e.printStackTrace();
+		} catch (final InterruptedException exception) {
+			// Nothing to be done here...
 		}
-		_cassandra = null;
 	}
 
 	/**

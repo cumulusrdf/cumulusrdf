@@ -47,6 +47,7 @@ public class NativeCumulusURI extends URIImpl implements INativeCumulusResource 
 	 * @param uri the string representation of the URI.
 	 */
 	public NativeCumulusURI(final String uri) {
+		super(uri);
 		_hash = super.hashCode();
 		_has_data = true;
 	}
