@@ -1,0 +1,4 @@
+# filename: ex547.rq
+
+SELECT * WHERE 
+{ ?s ?p ?o }

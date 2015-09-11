@@ -1,6 +1,0 @@
-# filename: ex001.rq
-
-PREFIX d: <http://learningsparql.com/ns/addressbook#> 
-SELECT ?person
-WHERE
-{ ?person d:homeTel "(229) 276-5135" . }  

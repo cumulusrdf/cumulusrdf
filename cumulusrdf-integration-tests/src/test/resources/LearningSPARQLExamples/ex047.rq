@@ -1,0 +1,16 @@
+# filename: ex047.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?doctorFirst ?spouseFirst ?doctorLast 
+WHERE 
+{
+
+?doctor ab:firstName ?doctorFirst ;
+        ab:lastName ?doctorLast .
+
+?spouse ab:firstName ?spouseFirst .
+        
+
+}
+

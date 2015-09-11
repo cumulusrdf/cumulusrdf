@@ -1,0 +1,16 @@
+# filename: ex126.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?lname ?courseName 
+FROM <http://example.org.1#>
+FROM NAMED <http://example.org.3#>
+FROM NAMED <http://example.org.2#>
+WHERE
+{
+  { ?student ab:lastName ?lname }
+  UNION
+  { GRAPH <http://example.org.3#> { ?course ab:courseTitle ?courseName } }
+}
+
+

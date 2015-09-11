@@ -1,25 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<artifactId>cumulusrdf</artifactId>
 		<groupId>edu.kit.aifb</groupId>
 		<version>1.1.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-
 	<artifactId>cumulusrdf-core</artifactId>
 	<name>CumulusRDF: Core module</name>
 	<url>http://code.google.com/p/cumulusrdf/</url>
 	<description>Module containing core CumulusRDF classes. </description>
-
-
 	<organization>
 		<name>AIFB, KIT</name>
 		<url>http://www.aifb.kit.edu/</url>
 	</organization>
-
 	<developers>
 		<developer>
 			<name>Andreas Harth</name>
@@ -61,13 +56,9 @@
 			<url>http://it.linkedin.com/in/andreagazzarini</url>
 		</developer>
 	</developers>
-
 	<profiles>
 		<profile>
 			<id>cassandra12x-hector-full-tp-index</id>
-			<properties>
-				<test.suite.storage.runner>edu.kit.aifb.cumulus.test.framework.runners.Cassandra12xRunner</test.suite.storage.runner>
-			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>edu.kit.aifb</groupId>
@@ -79,9 +70,6 @@
 		</profile>
 		<profile>
 			<id>cassandra2x-cql-full-tp-index</id>
-			<properties>
-				<test.suite.storage.runner>edu.kit.aifb.cumulus.test.framework.runners.Cassandra2xRunner</test.suite.storage.runner>
-			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>edu.kit.aifb</groupId>
@@ -91,11 +79,8 @@
 				</dependency>
 			</dependencies>
 		</profile>
-	</profiles>
-
+	</profiles>	
 	<dependencies>
-
-		<!-- Cumulus -->
 		<dependency>
 			<groupId>edu.kit.aifb</groupId>
 			<artifactId>cumulusrdf-framework</artifactId>
@@ -107,8 +92,6 @@
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Sesame -->
 		<dependency>
 			<groupId>org.openrdf.sesame</groupId>
 			<artifactId>sesame-runtime</artifactId>
@@ -124,8 +107,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!-- Sesame: JsonLD parser/writer: https://github.com/jsonld-java/jsonld-java -->
 		<dependency>
 			<groupId>com.github.jsonld-java</groupId>
 			<artifactId>jsonld-java-sesame</artifactId>
@@ -145,15 +126,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!-- Sesame: RDFa parser: http://semarglproject.org -->
 		<dependency>
 			<groupId>org.semarglproject</groupId>
 			<artifactId>semargl-rdfa</artifactId>
 			<version>0.6.1</version>
 		</dependency>
-
-		<!-- Misc -->
 		<dependency>
 			<groupId>com.googlecode.concurrentlinkedhashmap</groupId>
 			<artifactId>concurrentlinkedhashmap-lru</artifactId>
@@ -169,9 +146,7 @@
 			<artifactId>commons-cli</artifactId>
 			<version>1.2</version>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

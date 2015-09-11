@@ -14,6 +14,7 @@ public class ProgrammableConfigurator extends DefaultConfigurator {
 	
 	final ConfigurationState _configurationHasBeenLoaded = new ConfigurationState() {
 
+		@SuppressWarnings("rawtypes")
 		@Override
 		public void configure(final Configurable configurable) {
 			configurable.accept(ProgrammableConfigurator.this);

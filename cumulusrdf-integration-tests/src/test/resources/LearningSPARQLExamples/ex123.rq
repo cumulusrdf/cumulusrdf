@@ -1,0 +1,10 @@
+# filename: ex123.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?email 
+FROM <http://example.org.1#>
+FROM <http://example.org.2#>
+WHERE
+{ ?s ab:email ?email . }
+

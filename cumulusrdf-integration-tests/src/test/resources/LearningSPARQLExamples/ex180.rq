@@ -1,0 +1,11 @@
+# filename: ex180.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+CONSTRUCT
+{ ?course ab:courseTitle ?courseName . }
+WHERE
+{
+  GRAPH <http://example.org.1#> { ?course ab:courseTitle ?courseName }
+}
+

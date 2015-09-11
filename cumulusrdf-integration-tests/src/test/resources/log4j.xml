@@ -9,6 +9,9 @@
 	<category name="edu.kit">
 		<priority value="DEBUG"/>	
    	</category>
+   	<category name="io.teknek">
+   	    <priority value="DEBUG"/>	    
+   	</category>
    	<category name="org.apache.cassandra.service">
    	    <priority value="ERROR"/>
    	</category>     	

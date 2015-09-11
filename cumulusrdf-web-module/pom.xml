@@ -1,23 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<artifactId>cumulusrdf</artifactId>
 		<groupId>edu.kit.aifb</groupId>
 		<version>1.1.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-
 	<artifactId>cumulusrdf-web-module</artifactId>
 	<packaging>war</packaging>
 	<name>CumulusRDF: Web module</name>
-
 	<organization>
 		<name>AIFB, KIT</name>
 		<url>http://www.aifb.kit.edu/</url>
 	</organization>
-
 	<developers>
 		<developer>
 			<name>Andreas Harth</name>
@@ -65,10 +61,7 @@
 			<url>http://www.aifb.kit.edu/web/Yongtao_Ma</url>
 		</developer>
 	</developers>
-
 	<dependencies>
-
-		<!-- Cumulus -->
 		<dependency>
 			<groupId>edu.kit.aifb</groupId>
 			<artifactId>cumulusrdf-test-framework</artifactId>
@@ -80,8 +73,6 @@
 			<artifactId>cumulusrdf-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
-		<!-- Velocity (needed for WebGUI) -->
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity-tools</artifactId>
@@ -105,8 +96,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!-- Sesame (needed for HTTPRepository) -->
 		<dependency>
 			<groupId>org.openrdf.sesame</groupId>
 			<artifactId>sesame-http-server-spring</artifactId>
@@ -123,8 +112,6 @@
 			<artifactId>sesame-http-protocol</artifactId>
 			<version>${sesame.version}</version>
 		</dependency>
-
-		<!-- Sesame (needed for internal/external URI translation) https://github.com/joshsh/sesametools -->
 		<dependency>
 			<groupId>net.fortytwo.sesametools</groupId>
 			<artifactId>mapping-sail</artifactId>
@@ -136,8 +123,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!-- Misc -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -148,16 +133,11 @@
 			<groupId>javax.servlet</groupId>
 			<version>${servlet.api.version}</version>
 			<scope>provided</scope>
-		</dependency>
-				
+		</dependency>				
 	</dependencies>
-
 	<profiles>
 		<profile>
 			<id>cassandra12x-hector-full-tp-index</id>
-			<properties>
-				<test.suite.storage.runner>edu.kit.aifb.cumulus.test.framework.runners.Cassandra12xRunner</test.suite.storage.runner>
-			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>edu.kit.aifb</groupId>
@@ -178,9 +158,6 @@
 		</profile>
 		<profile>
 			<id>cassandra2x-cql-full-tp-index</id>
-			<properties>
-				<test.suite.storage.runner>edu.kit.aifb.cumulus.test.framework.runners.Cassandra2xRunner</test.suite.storage.runner>
-			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>edu.kit.aifb</groupId>
@@ -191,7 +168,6 @@
 			</dependencies>
 		</profile>
 	</profiles>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -208,5 +184,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

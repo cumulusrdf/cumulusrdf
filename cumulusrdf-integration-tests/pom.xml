@@ -7,17 +7,14 @@
 		<version>1.1.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-
 	<artifactId>cumulusrdf-integration-tests</artifactId>
 	<name>CumulusRDF: Integration tests module</name>
 	<url>http://code.google.com/p/cumulusrdf/</url>
 	<description>Module containing only integration-tests that require a running Servlet Engine and Cassandra.  </description>
-
 	<organization>
 		<name>AIFB, KIT</name>
 		<url>http://www.aifb.kit.edu/</url>
 	</organization>
-
 	<developers>
 		<developer>
 			<name>Andreas Harth</name>
@@ -59,13 +56,96 @@
 			<url>http://it.linkedin.com/in/andreagazzarini</url>
 		</developer>
 	</developers>
-
+<!--     <pluginRepositories> -->
+<!--         <pluginRepository> -->
+<!--             <id>gazzax-fampy-repo</id> -->
+<!--             <url>https://raw.github.com/agazzarini/farsandra-maven-plugin/mvn-repo/</url> -->
+<!--         </pluginRepository> -->
+<!--     </pluginRepositories> -->
 	<dependencies>
 		<dependency>
 			<groupId>edu.kit.aifb</groupId>
 			<artifactId>cumulusrdf-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>edu.kit.aifb</groupId>
+			<artifactId>cumulusrdf-test-framework</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
-
+	<profiles>
+		<profile>
+			<id>cassandra12x-hector-full-tp-index</id>
+			<properties>
+				<cassandra.version>1.2.16</cassandra.version>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>edu.kit.aifb</groupId>
+					<artifactId>cumulusrdf-pluggable-storage-cassandra12x-hector-full-tp-index</artifactId>
+					<version>${project.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>cassandra2x-cql-full-tp-index</id>
+			<properties>
+				<cassandra.version>2.0.3</cassandra.version>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>edu.kit.aifb</groupId>
+					<artifactId>cumulusrdf-pluggable-storage-cassandra2x-cql-full-tp-index</artifactId>
+					<version>${project.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>	
+	<build>
+		<plugins>
+            <plugin>
+                <groupId>org.gazzax.labs</groupId>
+                <artifactId>farsandra-maven-plugin</artifactId>
+                <version>0.1</version>
+                <configuration>
+                    <version>${cassandra.version}</version>
+                    <createConfigurationFiles>true</createConfigurationFiles>
+                    <instanceName>${basedir}/target/cassandra</instanceName>
+                    <stdOutEnabled>true</stdOutEnabled>
+                    <stdErrEnabled>true</stdErrEnabled>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-cassandra</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop-cassandra</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                   			<goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>		
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
