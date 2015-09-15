@@ -258,9 +258,20 @@ public abstract class IntegrationTestSupertypeLayer {
 		}  
 	} 
 	
+	/**
+	 * Returns the directory where this tests will look for sample datafiles.
+	 * 
+	 * @return the directory where this tests will look for sample datafiles.
+	 */
 	protected abstract String examplesDirectory();
 	
-	
+	/**
+	 * Creates an in-memory clone of the incoming collection of statements. 
+	 * This is needed in order to execute comparisons between statements belonging to different value factories (e.g. InMemory and CumulusRDF).
+	 * 
+	 * @param model the set of statements to be cloned.
+	 * @return an in-memory clone of the incoming collection of statements.
+	 */
 	Set<Statement> statements(final Set<? extends Statement> model) {
 		final ValueFactory factory = inMemoryRepository.getValueFactory();
 		return model
@@ -286,6 +297,7 @@ public abstract class IntegrationTestSupertypeLayer {
 								: factory.createURI(((URI)statement.getSubject()).stringValue()), 
 							factory.createURI(((URI)statement.getPredicate()).stringValue()), 
 							object);
-				}).collect(toSet());
+				})
+				.collect(toSet());
 	}
 }
