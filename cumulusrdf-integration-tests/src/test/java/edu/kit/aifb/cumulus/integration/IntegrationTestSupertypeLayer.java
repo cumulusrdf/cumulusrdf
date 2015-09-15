@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.Set;
 
 import org.junit.AfterClass;
@@ -272,7 +273,7 @@ public abstract class IntegrationTestSupertypeLayer {
 	 * @param model the set of statements to be cloned.
 	 * @return an in-memory clone of the incoming collection of statements.
 	 */
-	Set<Statement> statements(final Set<? extends Statement> model) {
+	protected Set<Statement> statements(final Collection<? extends Statement> model) {
 		final ValueFactory factory = inMemoryRepository.getValueFactory();
 		return model
 				.stream()

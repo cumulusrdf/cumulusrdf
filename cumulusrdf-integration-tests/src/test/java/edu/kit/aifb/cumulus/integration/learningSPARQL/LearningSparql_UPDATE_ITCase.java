@@ -18,9 +18,13 @@ import static edu.kit.aifb.cumulus.test.MisteryGuest.misteryGuest;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.openrdf.model.util.ModelUtil;
+import org.openrdf.query.GraphQuery;
+import org.openrdf.query.GraphQueryResult;
 import org.openrdf.query.QueryLanguage;
 import org.openrdf.query.Update;
-import org.openrdf.repository.util.RepositoryUtil;
+import org.openrdf.query.resultio.QueryResultIO;
+import org.openrdf.rio.RDFFormat;
 
 import edu.kit.aifb.cumulus.test.MisteryGuest;
 
@@ -39,17 +43,40 @@ public class LearningSparql_UPDATE_ITCase extends LearningSparqlSupertypeLayer {
 	 * @param data the object holding test data (i.e. commands, queries, datafiles).
 	 * @throws Exception hopefully never otherwise the corresponding test fails.
 	 */
+	@SuppressWarnings("deprecation")
 	void executeUpdate(final MisteryGuest data) throws Exception {
 		load(data);
 		
 		final String updateCommand = readFile(data.query);
 		final Update localUpdate = localConnection.prepareUpdate(QueryLanguage.SPARQL, updateCommand);
-		final Update cumulusUpdate = localConnection.prepareUpdate(QueryLanguage.SPARQL, updateCommand);
+		final Update cumulusUpdate = cumulusConnection.prepareUpdate(QueryLanguage.SPARQL, updateCommand);
 		
 		localUpdate.execute();
 		cumulusUpdate.execute();
 		
-		assertTrue(RepositoryUtil.equals(inMemoryRepository, cumulusRepository));
+		try {
+			assertTrue(ModelUtil.equals(
+					statements(localConnection.getStatements(null, null, null, false).asList()), 
+					statements(cumulusConnection.getStatements(null, null, null, false).asList())));
+			
+		} catch (final AssertionError exception) {
+			final String queryString = "CONSTRUCT {?s ?p ?o} WHERE {?s ?p ?o}";
+			final GraphQuery localQuery = localConnection.prepareGraphQuery(QueryLanguage.SPARQL, queryString);
+			final GraphQuery cumulusQuery = cumulusConnection.prepareGraphQuery(QueryLanguage.SPARQL, queryString);
+			
+			final GraphQueryResult debugLocalResult = localQuery.evaluate();
+			final GraphQueryResult debugCumulusResult = cumulusQuery.evaluate();
+				
+			System.err.println("***** LOCAL ******");
+			QueryResultIO.write(debugLocalResult, RDFFormat.NTRIPLES, System.err);
+
+			System.err.println("***** CRDF ******");
+			QueryResultIO.write(debugCumulusResult, RDFFormat.NTRIPLES, System.err);
+			
+			debugCumulusResult.close();
+			debugLocalResult.close();
+			throw exception;
+		}
 	}
 	
 	@Test
