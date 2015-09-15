@@ -8,6 +8,7 @@ package edu.kit.aifb.cumulus.integration;
 import static edu.kit.aifb.cumulus.test.TestUtility.DUMMY_BASE_URI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import info.aduna.iteration.Iterations;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.nio.file.Paths;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.openrdf.model.util.ModelUtil;
 import org.openrdf.query.BooleanQuery;
 import org.openrdf.query.GraphQuery;
 import org.openrdf.query.GraphQueryResult;
@@ -23,6 +25,8 @@ import org.openrdf.query.QueryLanguage;
 import org.openrdf.query.QueryResults;
 import org.openrdf.query.TupleQuery;
 import org.openrdf.query.TupleQueryResult;
+import org.openrdf.query.resultio.QueryResultIO;
+import org.openrdf.query.resultio.TupleQueryResultFormat;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.sail.SailRepository;
@@ -162,8 +166,22 @@ public abstract class IntegrationTestSupertypeLayer {
 		
 		GraphQueryResult localResult = localQuery.evaluate();
 		GraphQueryResult cumulusResult = cumulusQuery.evaluate();
-		
-		assertTrue(QueryResults.equals(localResult, cumulusResult));
+		try {
+			assertTrue(ModelUtil.equals(Iterations.asSet(cumulusResult), Iterations.asSet(localResult)));			
+		} catch (final AssertionError exception) {
+			final GraphQueryResult debugLocalResult = localQuery.evaluate();
+			final GraphQueryResult debugCumulusResult = cumulusQuery.evaluate();
+				
+			System.err.println("***** LOCAL ******");
+			QueryResultIO.write(debugLocalResult, RDFFormat.NTRIPLES, System.err);
+
+			System.err.println("***** CRDF ******");
+			QueryResultIO.write(debugCumulusResult, RDFFormat.NTRIPLES, System.err);
+			
+			debugCumulusResult.close();
+			debugLocalResult.close();
+			throw exception;
+		}
 		
 		cumulusResult.close();
 		localResult.close();
@@ -182,11 +200,25 @@ public abstract class IntegrationTestSupertypeLayer {
 		final TupleQuery localQuery = localConnection.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 		final TupleQuery cumulusQuery = cumulusConnection.prepareTupleQuery(QueryLanguage.SPARQL, queryString);
 		
-		TupleQueryResult localResult = localQuery.evaluate();
-		TupleQueryResult cumulusResult = cumulusQuery.evaluate();
+		final TupleQueryResult localResult = localQuery.evaluate();
+		final TupleQueryResult cumulusResult = cumulusQuery.evaluate();
 		
-		assertTrue(QueryResults.equals(localResult, cumulusResult));
-		
+		try {
+			assertTrue(QueryResults.equals(localResult, cumulusResult));
+		} catch (final AssertionError exception) {
+			final TupleQueryResult debugLocalResult = localQuery.evaluate();
+			final TupleQueryResult debugCumulusResult = cumulusQuery.evaluate();
+				
+			System.err.println("***** LOCAL ******");
+			QueryResultIO.write(debugLocalResult, TupleQueryResultFormat.JSON, System.err);
+
+			System.err.println("***** CRDF ******");
+			QueryResultIO.write(debugCumulusResult, TupleQueryResultFormat.JSON, System.err);
+			
+			debugCumulusResult.close();
+			debugLocalResult.close();
+			throw exception;
+		}
 		cumulusResult.close();
 		localResult.close();
 	}
@@ -204,12 +236,13 @@ public abstract class IntegrationTestSupertypeLayer {
 		}
 		
 		for (final String datafileName : data.datasets) {
+			final RDFFormat format = datafileName.endsWith(".ttl") ? RDFFormat.TURTLE : RDFFormat.RDFXML;
 			if (data.graphURI != null) {
-				localConnection.add(source(datafileName), DUMMY_BASE_URI, RDFFormat.TURTLE, localConnection.getValueFactory().createURI(data.graphURI));
-				cumulusConnection.add(source(datafileName), DUMMY_BASE_URI, RDFFormat.TURTLE, cumulusConnection.getValueFactory().createURI(data.graphURI));
+				localConnection.add(source(datafileName), DUMMY_BASE_URI, format, localConnection.getValueFactory().createURI(data.graphURI));
+				cumulusConnection.add(source(datafileName), DUMMY_BASE_URI, format, cumulusConnection.getValueFactory().createURI(data.graphURI));
 			} else {
-				localConnection.add(source(datafileName), DUMMY_BASE_URI, RDFFormat.TURTLE);
-				cumulusConnection.add(source(datafileName), DUMMY_BASE_URI, RDFFormat.TURTLE);				
+				localConnection.add(source(datafileName), DUMMY_BASE_URI, format);
+				cumulusConnection.add(source(datafileName), DUMMY_BASE_URI, format);				
 			}
 		}  
 	} 

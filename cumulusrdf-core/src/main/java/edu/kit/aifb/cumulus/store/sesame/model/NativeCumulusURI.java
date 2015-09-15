@@ -59,7 +59,7 @@ public class NativeCumulusURI extends URIImpl implements INativeCumulusResource 
 		}
 
 		if (!(object instanceof NativeCumulusURI)) {
-			return false;
+			return (object instanceof URI) && ((URI)object).stringValue().equals(stringValue());
 		}
 
 		if (object instanceof NativeCumulusURI && !Arrays.equals(_internalID, INativeCumulusValue.UNKNOWN_ID)) {

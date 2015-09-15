@@ -34,9 +34,6 @@ public class NativeCumulusLiteral extends LiteralImpl implements INativeCumulusV
 	 * @param dict the dictionary in use.
 	 */
 	public NativeCumulusLiteral(final byte[] internalID, final ITopLevelDictionary dict) {
-
-		super();
-
 		_internalID = internalID;
 		_hash = Arrays.hashCode(_internalID);
 		_dict = dict;
@@ -49,7 +46,6 @@ public class NativeCumulusLiteral extends LiteralImpl implements INativeCumulusV
 	 * @param label the literal content.
 	 */
 	public NativeCumulusLiteral(final String label) {
-
 		super(label);
 
 		_hash = super.hashCode();
@@ -63,7 +59,6 @@ public class NativeCumulusLiteral extends LiteralImpl implements INativeCumulusV
 	 * @param language the language code.
 	 */
 	public NativeCumulusLiteral(final String label, final String language) {
-
 		super(label, language);
 
 		_hash = super.hashCode();
@@ -77,7 +72,6 @@ public class NativeCumulusLiteral extends LiteralImpl implements INativeCumulusV
 	 * @param datatype the datatype URI.
 	 */
 	public NativeCumulusLiteral(final String label, final URI datatype) {
-
 		super(label, datatype);
 
 		_hash = super.hashCode();
@@ -86,13 +80,16 @@ public class NativeCumulusLiteral extends LiteralImpl implements INativeCumulusV
 
 	@Override
 	public boolean equals(final Object object) {
-
 		if (this == object) {
 			return true;
 		}
 
-		if (!(object instanceof Literal)) {
-			return false;
+		if (!(object instanceof NativeCumulusURI)) {
+			return (object instanceof URI) && ((URI)object).stringValue().equals(stringValue());
+		}
+		
+		if (!(object instanceof NativeCumulusLiteral)) {
+			return (object instanceof Literal) && ((Literal)object).stringValue().equals(stringValue());
 		}
 
 		if (object instanceof NativeCumulusLiteral && !Arrays.equals(_internalID, INativeCumulusValue.UNKNOWN_ID)) {

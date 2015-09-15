@@ -36,7 +36,6 @@ import org.openrdf.query.algebra.evaluation.impl.OrderLimitOptimizer;
 import org.openrdf.query.algebra.evaluation.impl.QueryJoinOptimizer;
 import org.openrdf.query.algebra.evaluation.impl.QueryModelNormalizer;
 import org.openrdf.query.algebra.evaluation.impl.SameTermFilterOptimizer;
-import org.openrdf.query.algebra.helpers.QueryModelTreePrinter;
 import org.openrdf.query.impl.EmptyBindingSet;
 import org.openrdf.sail.SailException;
 import org.openrdf.sail.helpers.NotifyingSailConnectionBase;
@@ -170,9 +169,6 @@ public class CumulusRDFSailConnection extends NotifyingSailConnectionBase {
 		new IterativeEvaluationOptimizer().optimize(tupleExpr, dataset, bindings);
 		new OrderLimitOptimizer().optimize(tupleExpr, dataset, bindings);
 
-		if (_log.isDebugEnabled()) {
-			_log.debug(QueryModelTreePrinter.printTree(tupleExpr));
-		}
 		try {
 			return strategy.evaluate(tupleExpr, EmptyBindingSet.getInstance());
 		} catch (QueryEvaluationException e) {

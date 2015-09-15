@@ -214,7 +214,6 @@ public class LearningSparql_SELECT_ITCase extends LearningSparqlSupertypeLayer {
 	 * Curiously the Jena memory mode fails while SolRDF returns expected results
 	 */
 	@Test
-	@Ignore
 	public void from() throws Exception {
 		load(misteryGuestWithGraphURI(null, "http://example.org.1#", "ex069.ttl"));
 		load(misteryGuestWithGraphURI(null, "http://example.org.2#", "ex122.ttl"));
@@ -223,7 +222,6 @@ public class LearningSparql_SELECT_ITCase extends LearningSparqlSupertypeLayer {
 	}	
 	
 	@Test
-	@Ignore
 	public void fromNamed() throws Exception {
 		load(misteryGuestWithGraphURI(null, "http://example.org.1#", "ex069.ttl"));
 		load(misteryGuestWithGraphURI(null, "http://example.org.2#", "ex122.ttl"));
@@ -485,17 +483,8 @@ public class LearningSparql_SELECT_ITCase extends LearningSparqlSupertypeLayer {
 		selectTest(misteryGuest("ex293.rq", "ex292.ttl"));		
 	}	
 	
-	/**
-	 * Cannot execute: currentSeconds are different between comparisons.
-	 */
 	@Test
-	@Ignore
 	public void dateAndTimeFunctions() throws Exception {
 		selectTest(misteryGuest("ex303.rq"));		
-	}	
-	
-	@Test
-	public void extensionFunctions() throws Exception {
-		selectTest(misteryGuest("ex308.rq", "ex012.ttl"));		
 	}	
 }

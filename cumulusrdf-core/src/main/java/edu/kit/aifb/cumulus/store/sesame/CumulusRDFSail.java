@@ -21,7 +21,7 @@ public class CumulusRDFSail extends NotifyingSailBase {
 	private final static Log LOGGER = new Log(LoggerFactory.getLogger(CumulusRDFSail.class));
 
 	private final Store _store;
-	private final CumulusRDFValueFactory _valueFactory;
+	private CumulusRDFValueFactory _valueFactory;
 
 	/**
 	 * Builds a new {@link CumulusRDFSail} with the given {@link Store}.
@@ -30,7 +30,6 @@ public class CumulusRDFSail extends NotifyingSailBase {
 	 */
 	public CumulusRDFSail(final Store crdf) {
 		_store = crdf;
-		_valueFactory = new CumulusRDFValueFactory(_store.getDictionary());
 	}
 
 	@Override
@@ -55,7 +54,8 @@ public class CumulusRDFSail extends NotifyingSailBase {
 	@Override
 	protected void initializeInternal() throws SailException {
 		try {
-			_store.open();			
+			_store.open();	
+			_valueFactory = new CumulusRDFValueFactory(_store.getDictionary());
 		} catch (final CumulusStoreException exception) {
 			LOGGER.error(MessageCatalog._00025_CUMULUS_SYSTEM_INTERNAL_FAILURE, exception);
 			throw new SailException(exception);
