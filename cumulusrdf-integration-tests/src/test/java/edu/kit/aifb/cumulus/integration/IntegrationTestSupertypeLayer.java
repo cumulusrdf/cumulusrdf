@@ -6,6 +6,7 @@
 package edu.kit.aifb.cumulus.integration;
 
 import static edu.kit.aifb.cumulus.test.TestUtility.DUMMY_BASE_URI;
+import static java.util.stream.Collectors.toSet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import info.aduna.iteration.Iterations;
@@ -14,9 +15,16 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Set;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.openrdf.model.BNode;
+import org.openrdf.model.Literal;
+import org.openrdf.model.Statement;
+import org.openrdf.model.URI;
+import org.openrdf.model.Value;
+import org.openrdf.model.ValueFactory;
 import org.openrdf.model.util.ModelUtil;
 import org.openrdf.query.BooleanQuery;
 import org.openrdf.query.GraphQuery;
@@ -167,7 +175,10 @@ public abstract class IntegrationTestSupertypeLayer {
 		GraphQueryResult localResult = localQuery.evaluate();
 		GraphQueryResult cumulusResult = cumulusQuery.evaluate();
 		try {
-			assertTrue(ModelUtil.equals(Iterations.asSet(cumulusResult), Iterations.asSet(localResult)));			
+			assertTrue(
+					ModelUtil.equals(
+							statements(Iterations.asSet(localResult)), 
+							statements(Iterations.asSet(cumulusResult))));			
 		} catch (final AssertionError exception) {
 			final GraphQueryResult debugLocalResult = localQuery.evaluate();
 			final GraphQueryResult debugCumulusResult = cumulusQuery.evaluate();
@@ -248,4 +259,33 @@ public abstract class IntegrationTestSupertypeLayer {
 	} 
 	
 	protected abstract String examplesDirectory();
+	
+	
+	Set<Statement> statements(final Set<? extends Statement> model) {
+		final ValueFactory factory = inMemoryRepository.getValueFactory();
+		return model
+				.stream()
+				.map(statement -> {
+						Value object = null;
+						if (statement.getObject() instanceof Literal) {
+							Literal l = (Literal) statement.getObject();
+							if (l.getLanguage() != null) {
+								object = factory.createLiteral(l.getLabel(), l.getLanguage());								
+							} else {
+								object = factory.createLiteral(l.getLabel(), l.getDatatype());																
+							}
+						} else if (statement.getObject() instanceof BNode) {
+							object = factory.createBNode(((BNode)statement.getObject()).getID()); 
+						} else if (statement.getObject() instanceof URI) {
+							object = factory.createURI(((URI)statement.getSubject()).stringValue());
+						}
+						
+						return factory.createStatement(
+							statement.getSubject() instanceof BNode 
+								? factory.createBNode(((BNode)statement.getSubject()).getID()) 
+								: factory.createURI(((URI)statement.getSubject()).stringValue()), 
+							factory.createURI(((URI)statement.getPredicate()).stringValue()), 
+							object);
+				}).collect(toSet());
+	}
 }
