@@ -1,10 +1,5 @@
 *.class
 
-# Package Files #
-*.jar
-*.war
-*.ear
-
 # Eclipse files
 .project 
 .classpath
