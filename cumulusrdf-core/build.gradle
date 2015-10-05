@@ -1,0 +1,23 @@
+description = 'CumulusRDF: Core module'
+
+dependencies {
+
+	compile project(':cumulusrdf-framework')
+	
+	compile(group: 'org.openrdf.sesame', name: 'sesame-runtime', version:'2.7.10') {
+		exclude(module: 'slf4j-api')
+		exclude(module: 'jackson-core')
+	}
+	compile(group: 'com.github.jsonld-java', name: 'jsonld-java-sesame', version:'0.4.1') {
+		exclude(module: 'sesame-model')
+		exclude(module: 'sesame-rio-api')
+		exclude(module: 'slf4j-api')
+	}
+	
+	compile group: 'org.semarglproject', name: 'semargl-rdfa', version:'0.6.1'
+	compile group: 'com.googlecode.concurrentlinkedhashmap', name: 'concurrentlinkedhashmap-lru', version:'1.4'
+	compile group: 'org.slf4j', name: 'slf4j-log4j12', version:'1.6.1'
+	compile group: 'commons-cli', name: 'commons-cli', version:'1.2'
+	
+	testCompile project(':cumulusrdf-test-framework')
+}

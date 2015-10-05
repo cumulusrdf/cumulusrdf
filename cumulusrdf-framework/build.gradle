@@ -1,0 +1,9 @@
+description = 'CumulusRDF: Framework'
+
+dependencies {
+	compile group: 'org.openrdf.sesame', name: 'sesame-model', version:'2.7.10'
+	compile group: 'org.openrdf.sesame', name: 'sesame-queryalgebra-model', version:'2.7.10'
+	compile group: 'org.yaml', name: 'snakeyaml', version:'1.9'
+	compile group: 'com.google.guava', name: 'guava', version:'17.0'
+	compile group: 'joda-time', name: 'joda-time', version:'2.2'
+}

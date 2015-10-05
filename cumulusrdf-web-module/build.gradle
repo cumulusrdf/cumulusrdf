@@ -1,0 +1,26 @@
+apply plugin: 'war'
+
+description = 'CumulusRDF: Web module'
+
+dependencies {
+	compile project(':cumulusrdf-core')
+	
+	compile(group: 'org.apache.velocity', name: 'velocity-tools', version:'2.0') {
+		exclude(module: 'struts-core')
+		exclude(module: 'struts-taglib')
+		exclude(module: 'struts-tiles')
+		exclude(module: 'servlet-api')
+	}
+	compile(group: 'org.openrdf.sesame', name: 'sesame-http-server-spring', version:'2.7.10') {
+		exclude(module: 'logback-classic')
+	}
+	compile 'org.openrdf.sesame:sesame-http-protocol:2.7.10'
+	compile(group: 'net.fortytwo.sesametools', name: 'mapping-sail', version:'1.8') {
+		exclude(module: 'sesame-sail-api')
+	}
+	compile 'commons-fileupload:commons-fileupload:1.2.2'
+	
+	testCompile project(':cumulusrdf-test-framework')
+	
+	providedCompile 'javax.servlet:servlet-api:2.5'
+}

@@ -1,0 +1,5 @@
+description = 'CumulusRDF: Standalone c/s module'
+
+dependencies {
+	compile project(':cumulusrdf-core')
+}

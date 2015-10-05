@@ -1,0 +1,12 @@
+rootProject.name = 'cumulusrdf'
+
+include ':cumulusrdf-framework'
+include ':cumulusrdf-test-framework'
+include ':cumulusrdf-core'
+include ':cumulusrdf-standalone'
+include ':cumulusrdf-web-module'
+include ':cumulusrdf-integration-tests'
+
+include ':cumulusrdf-pluggable-storage'
+include ':cumulusrdf-pluggable-storage:cumulusrdf-pluggable-storage-cassandra12x-hector-full-tp-index'
+include ':cumulusrdf-pluggable-storage:cumulusrdf-pluggable-storage-cassandra2x-cql-full-tp-index'

@@ -1,0 +1,6 @@
+description = 'CumulusRDF: Cassandra 2.x (using CQL)'
+
+dependencies {
+	compile project(':cumulusrdf-framework')
+	compile group: 'com.datastax.cassandra', name: 'cassandra-driver-core', version:'2.2.0-rc3'
+}

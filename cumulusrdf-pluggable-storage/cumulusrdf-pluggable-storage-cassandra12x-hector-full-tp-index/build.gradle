@@ -1,0 +1,9 @@
+description = 'CumulusRDF: Cassandra 1.2.x (using Hector)'
+
+dependencies {
+	compile project(':cumulusrdf-framework')
+	compile(group: 'org.hectorclient', name: 'hector-core', version:'1.1-4') {
+		exclude(module: 'slf4j-api')
+		exclude(module: 'servlet-api')
+	}
+}

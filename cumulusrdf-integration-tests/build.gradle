@@ -1,0 +1,6 @@
+description = 'CumulusRDF: Integration tests module'
+
+dependencies {
+	compile project(':cumulusrdf-core')
+	compile project(':cumulusrdf-test-framework')
+}
