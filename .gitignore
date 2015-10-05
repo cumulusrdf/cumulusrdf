@@ -20,3 +20,7 @@ cachefile
 
 # PMD
 .pmd
+
+# Gradle
+.gradle
+build
