@@ -107,9 +107,9 @@
 	<build>
 		<plugins>
             <plugin>
-                <groupId>org.gazzax.labs</groupId>
+                <groupId>io.teknek</groupId>
                 <artifactId>farsandra-maven-plugin</artifactId>
-                <version>0.1</version>
+                <version>0.0.8</version>
                 <configuration>
                     <version>${cassandra.version}</version>
                     <createConfigurationFiles>true</createConfigurationFiles>
