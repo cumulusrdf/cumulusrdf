@@ -107,34 +107,6 @@ CumulusRDF is licensed under GNU Affero General Public License.</description>
 	</profiles>		
 	<build>
 		<plugins>
-		            <plugin>
-                <groupId>io.teknek</groupId>
-                <artifactId>farsandra-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <configuration>
-                    <version>${cassandra.version}</version>
-                    <createConfigurationFiles>true</createConfigurationFiles>
-                    <instanceName>${basedir}/target/cassandra</instanceName>
-                    <stdOutEnabled>true</stdOutEnabled>
-                    <stdErrEnabled>true</stdErrEnabled>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>start-cassandra</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-cassandra</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                   			<goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
