@@ -135,6 +135,13 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+
+	<properties>
+		<cumulus.container.port>9090</cumulus.container.port>
+		<cumulus.container.logging>low</cumulus.container.logging>
+		<cumulus.container.memory>512M</cumulus.container.memory>
+	</properties>
+
 	<profiles>
 		<profile>
 			<id>cassandra12x-hector-full-tp-index</id>
@@ -189,15 +196,35 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>${embedded.tomcat.plugin.version}</version>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.17</version>
 				<configuration>
-					<path>/cumulus</path>
-					<port>9090</port>
-					<systemProperties>
-						<log4j.configuration>file://${project.build.directory}/tomcat/conf/log4j.xml</log4j.configuration>
-					</systemProperties>
+					<container>
+						<containerId>tomcat8x</containerId>
+						<type>embedded</type>
+						<systemProperties>
+							<log4j.configuration>file://${project.build.directory}/tomcat/conf/log4j.xml</log4j.configuration>
+						</systemProperties>
+					</container>
+					<deployables>
+						<deployable>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.artifactId}</artifactId>
+							<type>war</type>
+							<properties>
+								<context>cumulus</context>
+							</properties>
+						</deployable>
+					</deployables>
+					<configuration>
+						<properties>
+							<cargo.servlet.uriencoding>UTF-8</cargo.servlet.uriencoding>
+							<cargo.jvmargs>-Xmx${cumulus.container.memory}</cargo.jvmargs>
+							<cargo.logging>${cumulus.container.logging}</cargo.logging>
+							<cargo.servlet.port>${cumulus.container.port}</cargo.servlet.port>
+						</properties>
+					</configuration>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -19,3 +19,6 @@ cachefile
 # Gradle
 .gradle
 build
+
+# Mac OSX files
+.DS_Store
