@@ -137,9 +137,10 @@
 	</dependencies>
 
 	<properties>
-		<cumulus.container.port>9090</cumulus.container.port>
-		<cumulus.container.logging>low</cumulus.container.logging>
-		<cumulus.container.memory>512M</cumulus.container.memory>
+		<container.port>9090</container.port>
+		<container.logging.level>low</container.logging.level>
+		<container.memory>512M</container.memory>
+		<log4j.logging.configuration>file://${project.build.directory}/logging/log4j.xml</log4j.logging.configuration>
 	</properties>
 
 	<profiles>
@@ -180,8 +181,94 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		<profile>
+			<id>tomcat7x</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>tomcat7x</containerId>
+								<type>embedded</type>
+								<systemProperties>
+									<log4j.configuration>${log4j.logging.configuration}</log4j.configuration>
+								</systemProperties>
+							</container>
+							<deployables>
+								<deployable>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<type>war</type>
+									<properties>
+										<context>cumulus</context>
+									</properties>
+								</deployable>
+							</deployables>
+							<configuration>
+								<properties>
+									<cargo.servlet.uriencoding>UTF-8</cargo.servlet.uriencoding>
+									<cargo.logging>${container.logging.level}</cargo.logging>
+									<cargo.servlet.port>${container.port}</cargo.servlet.port>
+								</properties>
+							</configuration>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>wildfly9x</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>wildfly9x</containerId>
+								<type>installed</type>
+								<artifactInstaller>
+									<groupId>org.wildfly</groupId>
+									<artifactId>	wildfly-dist</artifactId>
+									<version>9.0.2.Final</version>
+								</artifactInstaller>
+								<systemProperties>
+									<log4j.configuration>${log4j.logging.configuration}</log4j.configuration>
+								</systemProperties>
+							</container>
+							<deployables>
+								<deployable>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<type>war</type>
+									<properties>
+										<context>cumulus</context>
+									</properties>
+								</deployable>
+							</deployables>
+							<configuration>
+								<properties>
+									<cargo.servlet.uriencoding>UTF-8</cargo.servlet.uriencoding>
+									<cargo.jvmargs>-Xmx${container.memory}</cargo.jvmargs>
+									<cargo.logging>${container.logging.level}</cargo.logging>
+									<cargo.servlet.port>${container.port}</cargo.servlet.port>
+								</properties>
+							</configuration>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 	<build>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources/logging</directory>
+				<targetPath>${project.build.directory}/logging</targetPath>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>io.teknek</groupId>
@@ -204,7 +291,7 @@
 						<containerId>tomcat8x</containerId>
 						<type>embedded</type>
 						<systemProperties>
-							<log4j.configuration>file://${project.build.directory}/tomcat/conf/log4j.xml</log4j.configuration>
+							<log4j.configuration>${log4j.logging.configuration}</log4j.configuration>
 						</systemProperties>
 					</container>
 					<deployables>
@@ -220,9 +307,8 @@
 					<configuration>
 						<properties>
 							<cargo.servlet.uriencoding>UTF-8</cargo.servlet.uriencoding>
-							<cargo.jvmargs>-Xmx${cumulus.container.memory}</cargo.jvmargs>
-							<cargo.logging>${cumulus.container.logging}</cargo.logging>
-							<cargo.servlet.port>${cumulus.container.port}</cargo.servlet.port>
+							<cargo.logging>${container.logging.level}</cargo.logging>
+							<cargo.servlet.port>${container.port}</cargo.servlet.port>
 						</properties>
 					</configuration>
 				</configuration>
