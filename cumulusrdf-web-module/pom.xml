@@ -133,11 +133,14 @@
 			<groupId>javax.servlet</groupId>
 			<version>${servlet.api.version}</version>
 			<scope>provided</scope>
-		</dependency>				
+		</dependency>
 	</dependencies>
 	<profiles>
 		<profile>
 			<id>cassandra12x-hector-full-tp-index</id>
+			<properties>
+				<cassandra.version>1.2.16</cassandra.version>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>edu.kit.aifb</groupId>
@@ -158,6 +161,9 @@
 		</profile>
 		<profile>
 			<id>cassandra2x-cql-full-tp-index</id>
+			<properties>
+				<cassandra.version>2.0.3</cassandra.version>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>edu.kit.aifb</groupId>
@@ -170,6 +176,18 @@
 	</profiles>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>io.teknek</groupId>
+				<artifactId>farsandra-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<configuration>
+					<version>${cassandra.version}</version>
+					<createConfigurationFiles>true</createConfigurationFiles>
+					<instanceName>${basedir}/target/cassandra</instanceName>
+					<stdOutEnabled>true</stdOutEnabled>
+					<stdErrEnabled>true</stdErrEnabled>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>

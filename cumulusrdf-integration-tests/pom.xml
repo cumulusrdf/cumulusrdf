@@ -56,12 +56,6 @@
 			<url>http://it.linkedin.com/in/andreagazzarini</url>
 		</developer>
 	</developers>
-<!--     <pluginRepositories> -->
-<!--         <pluginRepository> -->
-<!--             <id>gazzax-fampy-repo</id> -->
-<!--             <url>https://raw.github.com/agazzarini/farsandra-maven-plugin/mvn-repo/</url> -->
-<!--         </pluginRepository> -->
-<!--     </pluginRepositories> -->
 	<dependencies>
 		<dependency>
 			<groupId>edu.kit.aifb</groupId>
