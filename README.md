@@ -3,17 +3,17 @@
 
 **CumulusRDF** (see Wikipedia[1] for details on "Cumulus") is an RDF store on a cloud-based architecture. CumulusRDF provides a REST-based API with CRUD operations to manage RDF data. The current version uses Apache Cassandra as storage backend.    
 
-To use CumulusRDF for your project, see the [GettingStarted](GettingStarted) wiki page!    
+To use CumulusRDF for your project, see the [GettingStarted](https://github.com/cumulusrdf/cumulusrdf/wiki/GettingStarted) wiki page!    
 
 ## Features
 * By means of Apache Cassandra [2] CumulusRDF offers a highly scalable RDF store for write-intensive applications
 * CumulusRDF acts as a Linked Data server
 * It allows for fast and lightweight evaluation of triple pattern queries
 * It has full support for triple and quad storage
-* CumulusRDF comprises a SesameSail [3] implementation, see [CodeExamples](CodeExamples) wiki page.
+* CumulusRDF comprises a SesameSail [3] implementation, see [CodeExamples](https://github.com/cumulusrdf/cumulusrdf/wiki/CodeExamples) wiki page.
 * Further, CumulusRDF contains a SPARQL1.1 endpoint. 
 
-Please see our [Features](Features) as well as our [Roadmap](Roadmap) wiki page for further information. 
+Please see our [Features](https://github.com/cumulusrdf/cumulusrdf/wiki/Features) as well as our [Roadmap](https://github.com/cumulusrdf/cumulusrdf/wiki/Roadmap) wiki page for further information. 
 
 ## Want to contribute?
 We welcome any kind of contribution to cumulusRDF. In particular, we have a developer mailing list. Feel free to sign up via the web interface or by emailing at cumulusrdf-dev-list+subscribe@googlegroups.com. 
