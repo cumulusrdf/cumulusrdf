@@ -15,6 +15,17 @@ To use CumulusRDF for your project, see the [GettingStarted](GettingStarted) wik
 
 Please see our [Features](Features) as well as our [Roadmap](Roadmap) wiki page for further information. 
 
+## Quick start using docker
+If you have docker you can get up and running quickly by using the following commands.
+
+```
+$ git clone git@github.com:cumulusrdf/cumulusrdf.git
+$ docker build -t cumulusrdf .
+$ docker run -d --name cumulusrdf -p 9090:9090 cumulusrdf
+```
+
+CumulusRDF is now available on http://localhost:9090/cumulus
+
 ## Want to contribute?
 We welcome any kind of contribution to cumulusRDF. In particular, we have a developer mailing list. Feel free to sign up via the web interface or by emailing at cumulusrdf-dev-list+subscribe@googlegroups.com. 
 
